@@ -23,6 +23,12 @@ namespace drweb_cs_mvc.Controllers
             return View();
         }
 
+        [Route("login")]
+        public IActionResult login()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
