@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<title>Document</title>
+</head>
+
+<body>
+	<button onclick="addproduct()">新增商品</button>
+	<div id="productDiv"></div>
+	訂單id:<input type="text" name="orderId"><br>
+	會員id:<input type="text" name="memberId"><br>
+	運送方式: <input type="text" name="shipMethod"><br>
+	收件者姓名: <input type="text" name="receiverName"><br>
+	收件者電話: <input type="text" name="receiverPhone"><br>
+	收件者信箱: <input type="text" name="receiverMail"><br>
+	收件者地址: <input type="text" name="receiverAddress"><br>
+
+	<button onclick="postOrder()">送出訂單</button>
+</body>
+<script>
+	var productId = 0
+	function addproduct() {
+		$('[id="productDiv"]').append(`商品編號<input name="product${productId}" type="text">: 單價<input name="price${productId}" type="text"> x <input name="quantity${productId}" type="number">總價:<input name="amount${productId}" type="number"><br>`)
+		productId += 1;
+	}
+	async function postOrder() {
+		var detail = {}
+
+		var totalAmount;
+		var bigtaltalAmount = 0;
+		for (i = 0; i < productId; i++) {
+			totalAmount = parseInt($(`input[name="price${i}"]`).val()) * parseInt($(`input[name="quantity${i}"]`).val())
+			detail[`${i}`] = {
+				productId: $(`input[name="product${i}"]`).val(),
+				quantity: $(`input[name="quantity${i}"]`).val(),
+				price: $(`input[name="price${i}"]`).val(),
+				amount: totalAmount,
+				orderId: $(`input[name="orderId"]`).val()
+			}
+
+			bigtaltalAmount += totalAmount;
+
+		}
+		var order = {
+			id: $(`input[name="orderId"]`).val(),
+			memberId: $(`input[name="memberId"]`).val(),
+			shipMethod: $(`input[name="shipMethod"]`).val(),
+			receiverName: $(`input[name="receiverName"]`).val(),
+			receiverPhone: $(`input[name="receiverPhone"]`).val(),
+			receiverMail: $(`input[name="receiverMail"]`).val(),
+			receiverAddress: $(`input[name="receiverAddress"]`).val(),
+			amount: bigtaltalAmount
+		}
+
+		var ecpayData = {
+			itemName: "訂單",
+			totalAmount: bigtaltalAmount,
+			tradeTime: getTime()
+		}
+
+
+
+
+		/**		$.ajax({
+					type: 'POST',
+					url: "/getMember",
+					contentType: 'application/json; charset=UTF-8',
+					data: order.memberId,
+					success: function (response) {
+						$.ajax({
+							type: 'POST',
+							url: "/postOrder",
+							contentType: 'application/json; charset=UTF-8',
+							data: JSON.stringify(order),
+							success: function (response) {
+								$.ajax({
+									type: 'POST',
+									url: "/orderdetail",
+									contentType: 'application/json; charset=UTF-8',
+									data: JSON.stringify(detail),
+									success: function (response) {
+										ajax('/ecpayCheckout', JSON.stringify(ecpayData), 1)
+		
+									},
+									error: function (error) {
+										// 处理错误响应
+		
+										console.log(error)
+									}
+								})
+		
+							},
+							error: function (error) {
+								// 处理错误响应
+		
+								console.log(error)
+							}
+						});
+		
+					},
+					error: function (error) {
+						// 处理错误响应
+		
+						console.log(error)
+					}
+				});**/
+				
+				
+		async function getMemberAndPostOrder(order, detail, ecpayData) {
+			try {
+				// 取得會員資訊
+				const memberResponse = await $.ajax({
+					type: 'POST',
+					url: "/getMember",
+					contentType: 'application/json; charset=UTF-8',
+					data: order.memberId
+				});
+
+				// 下單
+				const orderResponse = await $.ajax({
+					type: 'POST',
+					url: "/postOrder",
+					contentType: 'application/json; charset=UTF-8',
+					data: JSON.stringify(order)
+				});
+
+				// 訂單詳細資訊
+				const orderDetailResponse = await $.ajax({
+					type: 'POST',
+					url: "/orderdetail",
+					contentType: 'application/json; charset=UTF-8',
+					data: JSON.stringify(detail)
+				});
+
+				// 處理 ECPay
+				ajax('/ecpayCheckout', JSON.stringify(ecpayData), 1);
+			} catch (error) {
+				// 處理錯誤
+				console.log(error);
+			}
+		}
+
+		// 使用方式
+		getMemberAndPostOrder(order, detail, ecpayData);
+
+	}
+
+
+	function ajax(url, formData, ecpay) {
+		$.ajax({
+			type: 'POST',
+			url: url,
+			contentType: 'application/json; charset=UTF-8',
+			data: formData,
+			success: function (response) {
+				if (ecpay == 1) {
+					var newWindow = window.open("", "_self");
+					newWindow.document.write(response);
+					newWindow.document.close();
+				}
+
+			},
+			error: function (error) {
+				// 处理错误响应
+
+				console.log(error)
+			}
+		});
+		console.log(formData);
+	}
+	function getTime() {
+		// 取得現在的日期時間
+		var currentDate = new Date();
+
+		// 取得年、月、日、時、分、秒
+		var year = currentDate.getFullYear();
+		var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // 月份從0開始，需要加1
+		var day = ('0' + currentDate.getDate()).slice(-2);
+		var hours = ('0' + currentDate.getHours()).slice(-2);
+		var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+		var seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+		// 格式化日期時間字串
+		var formattedDateTime = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+		return formattedDateTime;
+	}
+
+</script>
+
+</html>

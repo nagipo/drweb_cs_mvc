@@ -1,0 +1,471 @@
+<!-- 左邊設定列_插入元件 -->
+<div class="block formSpace " id="bar" style="align-items: center; position: fixed; padding-bottom: 200px;">
+    <div style=" text-align: center;">
+        <div class="fw-bold"
+            style="font-size:  24px; background-color: #aaaaaa; height: 60px; text-align: center; padding-top:2.5% ;">
+            商品元件設定
+        </div>
+        <div style="padding: 20px;">
+            <div>
+                <label for="b_5_bloInput" style="font-size: 16px;">區塊標題：</label>
+                <input id="b_5_bloInput" class="form-control form-control-sm"
+                    style="width:300px; height: 40px; display: inline; background-color: #b8b8b8;" type="text"
+                    value="我是標題" placeholder="請填寫此區標題，若無則空" onblur="productBlcokTitle(this)">
+            </div>
+            <div style="margin: 10px auto;">
+                <label style="font-size: 16px; vertical-align: top;">區塊內文：</label>
+                <textarea class="form-control form-control-sm" style="width: 300px; height: 100px; background-color: #b8b8b8; display: inline;
+                    resize: vertical;" placeholder="請填寫區塊簡介，若無則空" onblur="productBlcokBody(this)"></textarea>
+            </div>
+            <div style="display: flex;align-content: center; justify-content: center;align-items: center;">
+                <label for="b_5_bloIC" style="font-size: 16px;">區塊顏色：</label>
+                <input type="color" id="b_5_bloIC" name="b_5_bloIC" value="#FFFFFF"
+                    oninput="updateColorInput(nb_5_bloIT, this.value)" onblur="productDivColor(this)">
+                <input type="text" id="b_5_bloIT" class="rounded form-control form-control-sm" value="#FFFFFF"
+                    oninput="updateColorPicker(nb_5_bloIC, this.value)"
+                    style="width: 250px; display: inline-block; background-color: #b8b8b8;"
+                    onblur="productDivColor(this)"><br>
+            </div>
+            <div>
+                <div style="font-size: 16px; margin-top: 20px; text-align: left; margin-left: 7%;">
+                    區塊背景圖片
+                </div>
+                <div class="dropArea" id="b_5_bloDiv" height: 200px;
+                    style="text-align: center;display: flex;align-items: center; justify-content: space-around; margin-left: 7%; "
+                    ondragover="handleDragOver(event)" ondrop="handleDrop(event, nb_5_bloDiv)"
+                    onclick="clickUpload(nb_5_bloDiv)">
+                    拖曳或點選<br>此處上傳圖片
+                </div>
+            </div>
+
+            <div style="border-top: 1px dashed #707070 ; margin-top: 20px; width: 100%;"></div>
+
+            <!-- 樣式選擇 -->
+            <div class="fw-bold" style="font-size: 20px; margin-top: 20px; text-align: left; margin-left: 7%;">
+                商品樣式
+            </div>
+            <div style=" text-align: left; margin-left: 7%;">
+                <label class="previeTitle" style="margin-top: 20px;">樣式：</label><br>
+            </div>
+
+            <input type="radio" name="nb_5_eleRadName" id="b_5_eleRadio_1" class="inputHidden"
+                onclick="showContent(nb_5_conDiv_1),setCardCount(4, 'container1')"  onclick="showContent('imgEle_1')" />
+            <label for="b_5_eleRadio_1" onclick="productElement(event,'view-',grid_test)">
+                <img src="backstage/icon/eleProduct-1.png" alt=""
+                    style="height: 100px; width: 200px; object-fit: contain; margin: 10px auto;" />
+            </label>
+            <input type="radio" name="nb_5_eleRadName" id="b_5_eleRadio_2" class="inputHidden"
+                onclick="showContent(nb_5_conDiv_2),setCardCount(3, 'container2')" onclick="showContent('imgEle_2'),setCardCount(3, 'container1')" />
+            <label for="b_5_eleRadio_2" style="margin-bottom: 20px;" onclick="productElement2(event,'view-',grid_test)">
+                <img src="backstage/icon/eleProduct-2.png" alt="" style="height: 100px; width: 200px; object-fit: contain;" />
+            </label>
+
+            <!-- 樣式1 -->
+            <div id="b_5_conDiv_1" class="contentEle" style="margin-top: 20px;">
+                <div style="border-top: 1px dashed #707070 ; margin-top: 20px; width: 100%;"></div>
+                <div class="fw-bold"
+                    style="font-size: 20px; margin-top: 20px; margin-bottom: 20px; text-align: left; margin-left: 7%;">
+                    卡片內容設定｜
+                </div>
+                <div style="display: none; align-items: center; margin-left: 7%;">
+                    <div style="font-size: 16px; text-align: left;">
+                        卡片數量：
+                    </div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-outline-secondary" value="1"
+                                onclick="setCardCount(1, 'container1')">1</button>
+                            <button type="button" class="btn btn-outline-secondary" value="2"
+                                onclick="setCardCount(2, 'container1')">2</button>
+                            <button type="button" class="btn btn-outline-secondary" value="3"
+                                onclick="setCardCount(3, 'container1')">3</button>
+                            <button type="button" class="btn btn-outline-secondary" value="4"
+                                onclick="setCardCount(4, 'container1')">4</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 裝卡片設定的容器 -->
+                <div class="container1"></div>
+            </div>
+
+            <!-- 樣式2 -->
+            <div id="b_5_conDiv_2" class="contentEle" style="margin-top: 20px;">
+                <div style="border-top: 1px dashed #707070 ; margin-top: 20px; width: 100%;"></div>
+                <div class="fw-bold"
+                    style="font-size: 20px; margin-top: 20px; margin-bottom: 20px; text-align: left; margin-left: 7%;">
+                    卡片內容設定｜
+                </div>
+                <div style="display: none; align-items: center;">
+                    <div style="font-size: 16px; text-align: left; margin-left: 7%;">
+                        卡片數量：
+                    </div>
+                    <div class=" btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-outline-secondary" value="1"
+                                onclick="setCardCount(1, 'container2')">1</button>
+                            <button type="button" class="btn btn-outline-secondary" value="2"
+                                onclick="setCardCount(2, 'container2')">2</button>
+                            <button type="button" class="btn btn-outline-secondary" value="3"
+                                onclick="setCardCount(3, 'container2')">3</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 裝卡片設定的容器 -->
+                <div class="container2"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    //id_區塊標題
+    nb_5_bloInput = `b${block}_${grid}_${ele}_bloInput_${counter}`;
+    document.querySelector(`label[for="b_5_bloInput"]`).setAttribute('for', nb_5_bloInput);
+    document.getElementById('b_5_bloInput').id = nb_5_bloInput;
+
+    //id_區塊顏色_顏色選擇器
+    nb_5_bloIC = `b${block}_${grid}_${ele}_bloIC_${counter}`;
+    nb_5_bloIT = `b${block}_${grid}_${ele}_bloIT_${counter}`;
+    document.querySelector(`label[for="b_5_bloIC"]`).setAttribute('for', nb_5_bloIC);
+    document.querySelector(`Input[name="b_5_bloIC"]`).setAttribute('name', nb_5_bloIC);
+    document.getElementById('b_5_bloIC').id = nb_5_bloIC;
+    //id_區塊顏色_輸入
+    document.getElementById('b_5_bloIT').id = nb_5_bloIT;
+
+    //id_區塊圖片
+    nb_5_bloDiv = `b${block}_${grid}_${ele}_bloDiv_${counter}`;
+    document.getElementById('b_5_bloDiv').id = nb_5_bloDiv;
+
+    //id_元件樣式
+    nb_5_eleRadio = [];
+    nb_5_eleRadName = `b${block}_${grid}_${ele}_eleRadName`;
+    for (let i = 1; i <= 2; i++) {
+        nb_5_eleRadio[i] = `b${block}_${grid}_${ele}_eleRadio_${counter + i - 1}`;
+        document.getElementById(`b_5_eleRadio_${i}`).id = nb_5_eleRadio[i];
+        // document.querySelector(`Input[name="b_5_eleRadio_${i}"]`).setAttribute('name', nb_5_eleRadio[i]);
+        document.querySelector(`label[for="b_5_eleRadio_${i}"]`).setAttribute('for', nb_5_eleRadio[i]);
+    }
+
+    //id_樣式容器
+    nb_5_conDiv_1 = `b${block}_${grid}_${ele}_conDiv_${counter}`;
+    document.getElementById('b_5_conDiv_1').id = nb_5_conDiv_1;
+    nb_5_conDiv_2 = `b${block}_${grid}_${ele}_conDiv_${counter + 1}`;
+    document.getElementById('b_5_conDiv_2').id = nb_5_conDiv_2;
+
+    //id_卡片背景顏色
+    nb_5_cardBGIC = `b${block}_${grid}_${ele}_cardBGIC_${counter}`;
+    nb_5_cardBGIT = `b${block}_${grid}_${ele}_cardBGIT_${counter}`;
+    //id_商品標題
+    nb_5_pdtInput = `b${block}_${grid}_${ele}_pdtInput_${counter}`;
+    //id_卡片標題顏色
+    nb_5_cardTIIC = `b${block}_${grid}_${ele}_cardTIIC_${counter}`;
+    nb_5_cardTIIT = `b${block}_${grid}_${ele}_cardTIIT_${counter}`;
+    //id_卡片價格
+    nb_5_priInput = `b${block}_${grid}_${ele}_priInput_${counter}`;
+    //id_按鈕顏色
+    nb_5_btnBGIC = `b${block}_${grid}_${ele}_btnBGIC_${counter}`;
+    nb_5_btnBGIT = `b${block}_${grid}_${ele}_btnBGIT_${counter}`;
+    //id_按鈕框線
+    nb_5_btnLIIC = `b${block}_${grid}_${ele}_btnLIIC_${counter}`;
+    nb_5_btnLIIT = `b${block}_${grid}_${ele}_btnLIIT_${counter}`;
+    //id_按鈕文字
+    nb_5_btnTTIC = `b${block}_${grid}_${ele}_btnTTIC_${counter}`;
+    nb_5_btnTTIT = `b${block}_${grid}_${ele}_btnTTIT_${counter}`;
+
+    // 選擇樣式//
+    function showContent(contentId) {
+        // 隱藏所有的內容
+        var allContents = document.getElementsByClassName('contentEle');
+        for (var i = 0; i < allContents.length; i++) {
+            allContents[i].style.display = 'none';
+        }
+
+        // 顯示被選擇的內容
+        document.getElementById(contentId).style.display = 'block';
+        
+    }
+
+    // 顏色選擇器//
+    // 監聽顏色選擇器的 input 事件，更新對應的色碼輸入框
+    function updateColorInput(colorCodeInputId, colorValue) {
+        var colorCodeInput = document.getElementById(colorCodeInputId);
+        colorCodeInput.value = colorValue;
+    }
+
+    // 監聽輸入框的 input 事件，更新對應的顏色選擇器
+    function updateColorPicker(colorPickerId, colorCode) {
+        var colorPicker = document.getElementById(colorPickerId);
+        colorPicker.value = colorCode;
+    }
+
+    // 上傳圖片//
+    // 拖移上傳圖片
+    function handleDragOver(event) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+    }
+
+    function handleDrop(event, dropAreaId) {
+        event.preventDefault();
+        uploadImage(event.dataTransfer.files, dropAreaId);
+    }
+    // 點擊上傳圖片
+    function clickUpload(dropAreaId,counterProduct) {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function () {
+            uploadImage(input.files, dropAreaId, counterProduct);
+        };
+        input.click();
+    }
+
+    // 在全域範圍內定義原始內容（預設文字）
+    var originalContent = "拖曳或點選<br>此處上傳圖片";
+    function uploadImage(files, dropAreaId,counterProduct) {
+        var dropArea = document.getElementById(dropAreaId);
+
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found:', dropAreaId);
+            return;
+        }
+
+        // 移除之前上傳的圖片預覽
+        while (dropArea.firstChild) {
+            dropArea.removeChild(dropArea.firstChild);
+        }
+
+        if (files.length > 0) {
+            var file = files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = new Image();
+                img.src = e.target.result;
+
+                // -----------------
+                // 亨+ 將圖片弄到我要的區塊
+                let imgSrc = e.target.result;
+                // 設置我要的背景圖片
+                // 使用 GridBlock（如果有的话）
+                let gridIdSelector = GridBlock ? "#" + GridBlock : "";
+                let targetElement = $("#view-" + block + " " + gridIdSelector);
+                let otherElement = $("#view-" + block + " " + gridIdSelector + " .SetProduct-" + counterProduct + " img");
+                if (targetElement.length > 0) {
+                    if (counterProduct) {
+                        otherElement.prop('src', imgSrc);
+                    }
+                    else {
+                        targetElement.css("background-image", "url('" + imgSrc + "')");
+                        console.log("圖片匯入")
+                    }
+                } else { console.log("回報錯誤"); }
+                // -----------------  
+
+
+                // 創建預覽區域
+                var previewDiv = document.createElement('div');
+                previewDiv.className = 'preview';
+                previewDiv.appendChild(img);
+
+                // 創建刪除按鈕
+                var deleteButton = document.createElement('button');
+                deleteButton.className = 'deleteButton';
+                deleteButton.innerHTML = 'X';
+                deleteButton.onclick = function (event) {
+                    event.stopPropagation(); // 阻止事件傳播
+                    dropArea.removeChild(previewDiv);
+                    showPlaceholderText(dropArea, originalContent); // 刪除後檢查是否顯示預設文字
+                    // 亨+的--------------------
+                    if (targetElement.length > 0) {
+                        if (counterProduct) {
+                            otherElement.prop('src', "");
+                        } else {
+                            targetElement.css("background-image", ""); // 清除背景图片
+                        }
+                    }
+                    // --------------
+                };
+
+                previewDiv.appendChild(deleteButton);
+                dropArea.appendChild(previewDiv);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            showPlaceholderText(dropArea, originalContent); // 如果沒有上傳圖片，檢查是否顯示預設文字
+        }
+    }
+
+    // 顯示預設文字的函數
+    function showPlaceholderText(dropArea, text) {
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found');
+            return;
+        }
+
+        // 檢查是否已經有預設文字元素，如果有，不再添加
+        if (dropArea.querySelector('.placeholder-text')) {
+            return;
+        }
+
+        var placeholderText = document.createElement('div');
+        placeholderText.className = 'placeholder-text';
+        placeholderText.innerHTML = text;
+
+        dropArea.appendChild(placeholderText);
+    }
+
+    // 生成卡片相應數量的設定//   
+
+    // 設定所選卡片數量
+    function setCardCount(number, containerId) {
+        var localCounter = 1; // 區域變數，歸零 localCounter
+        var selectedNumber = number; // 區域變數
+
+        generateDivs(containerId, localCounter, selectedNumber); // 生成容器
+    }
+
+    // 生成卡片相應數量的設定
+    function generateDivs(containerId, localCounter, selectedNumber) {
+        // 清空容器內的內容
+        document.querySelector('.' + containerId).innerHTML = '';
+
+        // 插入相應數量的div
+        for (var i = 0; i < selectedNumber; i++) {
+            var newDiv = document.createElement('div');
+            newDiv.className = 'dynamic-div';
+
+            // 使用 localCounter 來生成唯一的 id
+            var uniqueId = 'dynamic-div-' + localCounter;
+            localCounter++;
+
+            // 插入特定的內容，使用唯一的 id
+            newDiv.innerHTML = `
+                        
+                        
+                        <div style="display: flex;align-content: center; justify-content: center;align-items: center; margin-top: 10px;">
+                            <label for="b${block}_${grid}_${ele}_cardBGIC_${counter + localCounter - 2}" style="font-size: 16px;">卡片背景：</label>
+                            <input type="color" id="b${block}_${grid}_${ele}_cardBGIC_${counter + localCounter - 2}" name="b${block}_${grid}_${ele}_cardBGIC_${counter + localCounter - 2}" value="#FFFFFF"
+                                oninput="updateColorInput('b${block}_${grid}_${ele}_cardBGIT_${counter + localCounter - 2}', this.value)" onblur="productBgColor(this,${i + 1})">
+                            <input type="text" id="b${block}_${grid}_${ele}_cardBGIT_${counter + localCounter - 2}" class="rounded form-control form-control-sm" value="#FFFFFF"
+                                oninput="updateColorPicker('b${block}_${grid}_${ele}_cardBGIC_${counter + localCounter - 2}', this.value)"
+                                style="width: 250px; display: inline-block; background-color: #b8b8b8;" onblur="productBgColor(this,${i + 1})"><br>
+                        </div>
+                        
+                        <div style="display: flex;align-content: center; justify-content: center;align-items: center; margin-top: 10px;">
+                            <label for="b${block}_${grid}_${ele}_cardTIIC_${counter + localCounter - 2}" style="font-size: 16px;">標題顏色：</label>
+                            <input type="color" id="b${block}_${grid}_${ele}_cardTIIC_${counter + localCounter - 2}" name="b${block}_${grid}_${ele}_cardTIIC_${counter + localCounter - 2}" value="#FF0000"
+                                oninput="updateColorInput('b${block}_${grid}_${ele}_cardTIIT_${counter + localCounter - 2}', this.value)" onblur="productTitleColor(this,${i+1})">
+                            <input type="text" id="b${block}_${grid}_${ele}_cardTIIT_${counter + localCounter - 2}" class="rounded form-control form-control-sm" value="#FF0000"
+                                oninput="updateColorPicker('b${block}_${grid}_${ele}_cardTIIC_${counter + localCounter - 2}', this.value)"
+                                style="width: 250px; display: inline-block; background-color: #b8b8b8;" onblur="productTitleColor(this,${i+1})"><br>
+                        </div>
+                        
+                        <div style="display: flex;align-content: center; justify-content: center;align-items: center; margin-top: 10px;">
+                            <label for="b${block}_${grid}_${ele}_btnBGIC_${counter + localCounter - 2}" style="font-size: 16px;">按鈕顏色：</label>
+                            <input type="color" id="b${block}_${grid}_${ele}_btnBGIC_${counter + localCounter - 2}" name="b${block}_${grid}_${ele}_btnBGIC_${counter + localCounter - 2}" value="#FF0000"
+                                oninput="updateColorInput('b${block}_${grid}_${ele}_btnBGIT_${counter + localCounter - 2}', this.value)" onblur="productBtn(this,${i+1})">
+                            <input type="text" id="b${block}_${grid}_${ele}_btnBGIT_${counter + localCounter - 2}" class="rounded form-control form-control-sm" value="#FF0000"
+                                oninput="updateColorPicker('b${block}_${grid}_${ele}_btnBGIC_${counter + localCounter - 2}', this.value)"
+                                style="width: 250px; display: inline-block; background-color: #b8b8b8;" onblur="productBtn(this,${i+1})"><br>
+                        </div>
+                        <div style="display: flex;align-content: center; justify-content: center;align-items: center; margin-top: 10px;">
+                            <label for="b${block}_${grid}_${ele}_btnLIIC_${counter + localCounter - 2}" style="font-size: 16px;">按鈕框線：</label>
+                            <input type="color" id="b${block}_${grid}_${ele}_btnLIIC_${counter + localCounter - 2}" name="b${block}_${grid}_${ele}_btnLIIC_${counter + localCounter - 2}" value="#000000"
+                                oninput="updateColorInput('b${block}_${grid}_${ele}_btnLIIT_${counter + localCounter - 2}', this.value)" onblur="productBtnColor(this,${i+1})">
+                            <input type="text" id="b${block}_${grid}_${ele}_btnLIIT_${counter + localCounter - 2}" class="rounded form-control form-control-sm" value="#000000"
+                                oninput="updateColorPicker('b${block}_${grid}_${ele}_btnLIIC_${counter + localCounter - 2}', this.value)"
+                                style="width: 250px; display: inline-block; background-color: #b8b8b8;" onblur="productBtnColor(this,${i+1})"><br>
+                        </div>
+                        <div style="display: flex;align-content: center; justify-content: center;align-items: center; margin-top: 10px;">
+                            <label for="b${block}_${grid}_${ele}_btnTTIC_${counter + localCounter - 2}" style="font-size: 16px;">按鈕文字：</label>
+                            <input type="color" id="b${block}_${grid}_${ele}_btnTTIC_${counter + localCounter - 2}" name="b${block}_${grid}_${ele}_btnTTIC_${counter + localCounter - 2}" value="#FFFFFF"
+                                oninput="updateColorInput('b${block}_${grid}_${ele}_btnTTIT_${counter + localCounter - 2}', this.value)" onblur="productBtnText(this, ${i+1})">
+                            <input type="text" id="b${block}_${grid}_${ele}_btnTTIT_${counter + localCounter - 2}" class="rounded form-control form-control-sm" value="#FFFFFF"
+                                oninput="updateColorPicker('b${block}_${grid}_${ele}_btnTTIC_${counter + localCounter - 2}', this.value)"
+                                style="width: 250px; display: inline-block; background-color: #b8b8b8;" onblur="productBtnText(this, ${i+1})"><br>
+                        </div>
+                        <hr>
+                    `;
+
+            // 將新建的 div 插入容器中
+            document.querySelector('.' + containerId).appendChild(newDiv);
+        }
+    }
+
+    //------------------------------------------- 
+    // 亨+的方法  
+    // 標題匯入
+    function productBlcokTitle(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " " + "#" + GridBlock + " .headerText1").text(inputVal);
+
+    }
+
+    // 區塊內容
+    function productBlcokBody(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " " + "#" + GridBlock + " .headerText2").text(inputVal);
+    }
+
+    // 背景顏色
+    function productDivColor(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .child").css("background-color", inputVal);
+
+    }
+
+
+    // 產品卡片顏色
+    function productBgColor(element, produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid).css("background-color", inputVal);
+        console.log("produid" + produid)
+
+    }
+    // 產品標題
+    function productTitle(element, produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " .product-title").text(inputVal);
+
+    }
+
+    // 產品標題顏色
+    function productTitleColor(element,produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " .product-title").css("color", inputVal);
+
+    }
+
+    // 產品價格
+    function productPrice(element, produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " .product-text").text(inputVal);
+    }
+
+    // 按鈕顏色
+    function productBtn(element,produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " button").css("background-color", inputVal);
+
+    }
+    // 按鈕框線顏色
+    function productBtnColor(element,produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " button").css("border", "1px solid " + inputVal);
+
+    }
+   // 按鈕文字
+   function productBtnText(element, produid) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .SetProduct-" + produid + " button").css("color", inputVal);
+    }
+
+    // -----------------------------------
+</script>

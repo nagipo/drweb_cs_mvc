@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List</title>
+</head>
+
+<body>
+    <input type="text" name="name1"><button onclick="queryByName()">用名稱查詢</button>
+   <br>
+    <input type="text" name="id"><button onclick="queryById()">用id查詢</button>
+    <br>
+    <input type="text" name="id"><button onclick="queryAll()">顯示全部</button>
+    <h1>Product List</h1>
+
+    <ul id="productList"></ul>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script>
+
+        function queryAll() {
+            // 使用JavaScript發送HTTP POST請求獲取產品資料
+            fetch('/queryProduct', { method: 'POST', body: "shop01"})
+                .then(response => response.json())
+                .then(products => {
+                    // 將產品資料展示在前端
+                    console.log(JSON.stringify(products))
+                    const productListElement = document.getElementById('productList');
+                    products.forEach(product => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${product.id}: ${product.name} 庫存: ${product.stock} 上架數量: ${product.shelves} 成本: ${product.cost} 商品描述: ${product.discription} 價格: ${product.price}`;
+                        productListElement.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching product data:', error));
+        }
+        function queryByName() {
+            // 使用JavaScript發送HTTP POST請求獲取產品資料
+            var param = $('input[name="name1"]').val();
+            fetch(`/queryProductByname`
+                , {
+                    method: 'POST'
+                    , body: `${param}`,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                ,)
+                .then(response => response.json())
+                .then(products => {
+                    // 將產品資料展示在前端
+                    const productListElement = document.getElementById('productList');
+                    products.forEach(product => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${product.id}: ${product.name} 庫存: ${product.stock} 上架數量: ${product.shelves} 成本: ${product.cost} 商品描述: ${product.discription} 價格: ${product.price}`;
+                        productListElement.appendChild(listItem);
+                    });
+                })
+                .catch(error => console.error('Error fetching product data:', error));
+
+        }
+        function queryById() {
+            // 使用JavaScript發送HTTP POST請求獲取產品資料
+            var param = $('input[name="id"]').val();
+            fetch(`/queryProductById`
+                , {
+                    method: 'POST'
+                    , body: `${param}`,
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                ,)
+                .then(response => response.json())
+                .then(products => {
+                    // 將產品資料展示在前端
+                    
+                    const productListElement = document.getElementById('productList');
+                    products.forEach(product => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `${product.id}: ${product.name} 庫存: ${product.stock} 上架數量: ${product.shelves} 成本: ${product.cost} 商品描述: ${product.discription} 價格: ${product.price}`;
+                        productListElement.appendChild(listItem);
+                    });
+                })
+                .catch(error => alert("商品不存在"));
+
+        }
+    </script>

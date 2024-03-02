@@ -1,7 +1,12 @@
+using drweb_cs_mvc.internal_interface;
+using drweb_cs_mvc.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<login_service, loginServiceImpl>();
 
 var app = builder.Build();
 

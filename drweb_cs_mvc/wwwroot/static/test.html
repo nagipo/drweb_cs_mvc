@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跳轉綠界</title>
+</head>
+<body>
+<div id="div">
+    
+    <button id="myButton">點擊我</button>
+</div>
+
+<script>
+   
+    var button = document.getElementById("myButton");
+
+    
+    button.addEventListener("click", function() {
+       
+        var xhr = new XMLHttpRequest();
+
+        
+        xhr.open("POST", "/ecpayCheckout", true);
+
+       
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        
+        var data = {};
+        xhr.send(JSON.stringify(data));
+
+        
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                
+                    var newWindow = window.open("","_self");
+                    newWindow.document.write(xhr.responseText);
+                    newWindow.document.close();
+                    console.log("POST 请求成功:" + xhr.responseText);
+                } else {
+                    
+                    console.error("POST 请求失败，状态码:", xhr.status);
+                }
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

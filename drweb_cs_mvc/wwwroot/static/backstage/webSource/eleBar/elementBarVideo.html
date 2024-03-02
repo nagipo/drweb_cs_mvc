@@ -1,0 +1,223 @@
+<!-- 左邊設定列_插入元件 -->
+<div class="block formSpace " id="bar" style="align-items: center; position: fixed; padding-bottom: 150px;">
+    <div style=" text-align: center;">
+        <div class="fw-bold"
+            style="font-size:24px; background-color: #aaaaaa; height: 60px; text-align: center; padding-top:2.5% ;">
+            影片元件設定
+        </div>
+        <div style="padding: 20px;">
+            <div>
+                <label for="b_7_bloInput" style="font-size: 16px;">區塊標題：</label>
+                <input id="b_7_bloInput" class="form-control form-control-sm"
+                    style="width:300px; height: 40px; display: inline; background-color: #b8b8b8;" type="text"
+                    value="我是標題" placeholder="請填寫此區標題，若無則空" onblur="VideoTitle(this)">
+            </div>
+            <div style="margin: 10px auto;">
+                <label style="font-size: 16px; vertical-align: top;">區塊內文：</label>
+                <textarea class="form-control form-control-sm" style="width: 300px; height: 100px; background-color: #b8b8b8; display: inline;
+                    resize: vertical;" placeholder="請填寫區塊簡介，若無則空" onblur="VideoText(this)"></textarea>
+            </div>
+            <div style="display: flex;align-content: center; justify-content: center;align-items: center;">
+                <label for="b_7_bloIC" style="font-size: 16px;">區塊顏色：</label>
+                <input type="color" id="b_7_bloIC" name="b_7_bloIC" value="#FFFFFF"
+                    oninput="updateColorInput(nb_7_bloIT, this.value)" onblur="VideoDivColor(this)" >
+                <input type="text" id="b_7_bloIT" class="rounded form-control form-control-sm" value="#FFFFFF"
+                    oninput="updateColorPicker(nb_7_bloIC, this.value)"
+                    style="width: 250px; display: inline-block; background-color: #b8b8b8;"onblur="VideoDivColor(this)"><br>
+            </div>
+
+            <div style="font-size: 16px; margin-top: 20px; text-align: left; margin-left: 7%;">
+                區塊背景圖片
+            </div>
+            <div class="dropArea" id="b_7_bloDiv" height: 200px;
+                style="text-align: center;display: flex;align-items: center; justify-content: space-around; margin-left: 7%; "
+                ondragover="handleDragOver(event)" ondrop="handleDrop(event, nb_7_bloDiv)"
+                onclick="clickUpload(nb_7_bloDiv)">
+                拖曳或點選<br>此處上傳圖片
+            </div>
+            <div style="border-top: 1px dashed #707070 ; margin-top: 20px; width: 100%;"></div>
+
+            <div class="fw-bold"
+                style="font-size: 20px; margin-top: 20px; margin-bottom: 20px; text-align: left; margin-left: 7%;">
+                影片內容設定｜
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="margin: 10px auto;">
+                    <label style="font-size: 16px; vertical-align: top;">影片嵌入：</label>
+                    <textarea class="form-control form-control-sm" style="width: 300px; height: 100px; background-color: #b8b8b8; display: inline;
+                        resize: vertical;" placeholder="請填寫YouTube影片嵌入碼，請注意影片要是公開可分享的影片" onblur="VideoSrc(this)"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    //id_區塊標題
+    nb_7_bloInput = `b${block}_${grid}_${ele}_bloInput_${counter}`;
+    document.querySelector(`label[for="b_7_bloInput"]`).setAttribute('for', nb_7_bloInput);
+    document.getElementById('b_7_bloInput').id = nb_7_bloInput;
+
+    //id_區塊顏色_顏色選擇器
+    nb_7_bloIC = `b${block}_${grid}_${ele}_bloIC_${counter}`;
+    nb_7_bloIT = `b${block}_${grid}_${ele}_bloIT_${counter}`;
+    document.querySelector(`label[for="b_7_bloIC"]`).setAttribute('for', nb_7_bloIC);
+    document.querySelector(`Input[name="b_7_bloIC"]`).setAttribute('name', nb_7_bloIC);
+    document.getElementById('b_7_bloIC').id = nb_7_bloIC;
+    //id_區塊顏色_輸入
+    document.getElementById('b_7_bloIT').id = nb_7_bloIT;
+
+    //id_區塊圖片
+    nb_7_bloDiv = `b${block}_${grid}_${ele}_bloDiv_${counter}`;
+    document.getElementById('b_7_bloDiv').id = nb_7_bloDiv;
+
+
+    // 顏色選擇器//
+    // 監聽顏色選擇器的 input 事件，更新對應的色碼輸入框
+    function updateColorInput(colorCodeInputId, colorValue) {
+        let colorCodeInput = document.getElementById(colorCodeInputId);
+        colorCodeInput.value = colorValue;
+    }
+
+    // 監聽輸入框的 input 事件，更新對應的顏色選擇器
+    function updateColorPicker(colorPickerId, colorCode) {
+        let colorPicker = document.getElementById(colorPickerId);
+        colorPicker.value = colorCode;
+    }
+
+    // 上傳圖片//
+    // 拖移上傳圖片
+    function handleDragOver(event) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+    }
+
+    function handleDrop(event, dropAreaId) {
+        event.preventDefault();
+        uploadImage(event.dataTransfer.files, dropAreaId);
+    }
+    // 點擊上傳圖片
+    function clickUpload(dropAreaId) {
+        let input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function () {
+            uploadImage(input.files, dropAreaId);
+        };
+        input.click();
+    }
+
+    // 在全域範圍內定義原始內容（預設文字）
+    originalContent = "拖曳或點選<br>此處上傳圖片";
+    function uploadImage(files, dropAreaId) {
+        let dropArea = document.getElementById(dropAreaId);
+
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found:', dropAreaId);
+            return;
+        }
+
+        // 移除之前上傳的圖片預覽
+        while (dropArea.firstChild) {
+            dropArea.removeChild(dropArea.firstChild);
+        }
+
+        if (files.length > 0) {
+            let file = files[0];
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                let img = new Image();
+                img.src = e.target.result;
+                // ----------------------------
+                // 亨+ 將圖片弄到我要的區塊
+                let imgSrc = e.target.result;
+                // 設置我要的背景圖片
+                // 使用 GridBlock（如果有的话）
+                let gridIdSelector = GridBlock ? "#" + GridBlock : "";
+                let targetElement = $("#view-" + block + " " + gridIdSelector);
+                if (targetElement.length > 0) {
+                    targetElement.css("background-image", "url('" + imgSrc + "')");
+                    console.log("圖片匯入")
+                } else { console.log("回報錯誤"); }
+                // ---------------------------------- 
+
+                // 創建預覽區域
+                let previewDiv = document.createElement('div');
+                previewDiv.className = 'preview';
+                previewDiv.appendChild(img);
+
+                // 創建刪除按鈕
+                let deleteButton = document.createElement('button');
+                deleteButton.className = 'deleteButton';
+                deleteButton.innerHTML = 'X';
+                deleteButton.onclick = function (event) {
+                    event.stopPropagation(); // 阻止事件傳播
+                    dropArea.removeChild(previewDiv);
+                    showPlaceholderText(dropArea, originalContent); // 刪除後檢查是否顯示預設文字
+                    // 亨+的--------------------
+                    if (targetElement.length > 0) {
+                        targetElement.css("background-image", ""); // 清除背景图片
+                    }
+                    // ------------------------
+                };
+
+                previewDiv.appendChild(deleteButton);
+                dropArea.appendChild(previewDiv);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            showPlaceholderText(dropArea, originalContent); // 如果沒有上傳圖片，檢查是否顯示預設文字
+        }
+    }
+
+    // 顯示預設文字的函數
+    function showPlaceholderText(dropArea, text) {
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found');
+            return;
+        }
+
+        // 檢查是否已經有預設文字元素，如果有，不再添加
+        if (dropArea.querySelector('.placeholder-text')) {
+            return;
+        }
+
+        let placeholderText = document.createElement('div');
+        placeholderText.className = 'placeholder-text';
+        placeholderText.innerHTML = text;
+
+        dropArea.appendChild(placeholderText);
+    }
+
+    //----------------------------------------------
+    // 亨+的方法  
+    // 區塊標題
+    function VideoTitle(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " " + "#" + GridBlock + " .headerText1").text(inputVal);
+    }
+
+    // 區塊內文
+    function VideoText(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " " + "#" + GridBlock + " .headerText2").text(inputVal);
+    }
+
+    // 區塊顏色
+    function VideoDivColor(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " " + "#" + GridBlock + " .child").css("background-color", inputVal);
+    }
+
+    // 影片內容設定
+    function VideoSrc(element) {
+        var inputVal = $(element).val();
+        $("#view-" + block + " #" + GridBlock + " .child iframe").prop("src", inputVal);
+    }
+    // -----------------------------------------
+</script>

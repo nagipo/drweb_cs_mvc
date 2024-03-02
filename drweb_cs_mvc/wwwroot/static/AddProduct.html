@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <title>Document</title>
+
+
+</head>
+
+<body class="d-flex justify-content-center"
+  style=" display: flex; flex-direction: column; align-items: center; justify-content: center;height: 100vh;min-width: 1536px; min-height: 700px;">
+
+  <div style=" ">
+    <nav class="navbar navbar-expand-sm navbar-light " style="margin-left: 30px;">
+      <div class="container-fluid  ">
+        <div class="navbar-brand "><a href="" style="color: #0074d9; text-decoration:none;"> <img src="./icon/pLogo.png"
+              alt="" style="width: 45px;"> Project</a> </div>
+
+
+
+
+        <div class="navbar-collapse d-flex ms-3" id="navbarSupportedContent">
+          <ul class="navbar-nav   " style="margin-left: 85px;">
+            <li class="nav-item">
+              <a class="nav-link " aria-current="page" href="#">商品資訊</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">新增商品</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="#">商品設定</a>
+            </li>
+
+          </ul>
+
+          <button id="upload" class="btn btn-sm btn-secondary ms-auto" onclick="postForm()"><img src="./icon/update.png"
+              style="width: 33.3px ;height: 25px; margin-right: 5px; margin-bottom: 5px;" alt="">
+            <p id="upTxt">儲存資訊</p>
+          </button>
+
+        </div>
+
+
+      </div>
+    </nav>
+
+
+    <div id="content" class="d-flex  ">
+      <div class=" d-flex  flex-column   " style="margin-left: 30px; width: 184px; height: 400px;">
+        <div id="btnGp">
+          <button class="btn  mb-2 sideBtn"><img src="./icon/shop.png" alt="">商店設定</button>
+          <button class="btn  mb-2 sideBtn"><img src="./icon/webDesign.png" alt="">前台設計</button>
+          <button class="btn  mb-2 sideBtn"><img src="./icon/product.png" alt="">商品設定</button>
+          <button class="btn  mb-2 sideBtn"><img src="./icon/product.png" alt="">訂單設定</button>
+          <button class="btn  mb-2 sideBtn"><img src="./icon/activity.png" alt="">活動設定</button>
+          <button class="btn  mb-2 sideBtn"><img src="./icon/memberCenter.png" alt="">會員中心</button>
+        </div>
+        <button class=" ms-3 btn  btn-light" style="margin-top: 70px;"><img src="./icon/leave.png" alt="">
+          <p class="ms-4">登出</p>
+        </button>
+      </div>
+
+      <div id="formSpace" class=" mx-5 rounded" style="margin-left:30px ;margin-right: 30px; padding-top: 30px;
+        padding-left: 40px;
+        padding-right: 40px; padding-bottom: 30px;">
+        <!--畫面區  -->
+        <form>
+
+          <div class="rounded" style="background-color: white; height: 420px; margin-bottom: 24px;">
+            <div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 100%;">
+              <div class="row bg-secondary rounded">
+                <div class="bg-dark rounded" style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 25px">
+                  2
+                </div>
+                <div class="col" style="font-size: 25px">
+                  訂購人資訊
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style="margin-left: 70px; margin-top: 16px; display: inline-block;">
+                <label class="fw-bold" style="font-size: 24px;">商品圖片:</label>
+                <div style="margin-top: 8px; display: flex;">
+                  <input type="file" hidden />
+                  <label for="fileUpload" class="fileSection rounded">
+                    <div class="fileText" style="font-size: 16px;">
+                      上傳圖片
+                    </div>
+                  </label>
+                  <div style="margin-left: 20px; margin-bottom:0px ;height: 54px;">
+                    <span class="hint">建議尺寸 | 50 x 50 px</span><br />
+                    <span class="hint">檔案限制 | </span><br />
+                    <div style="padding-left: 20px;"><span class="hint">格式 :
+                        JPEG、JPG、PNG</span><br />
+                      <span class="hint">大小 : 請小於5MB</span><br />
+                    </div>
+                  </div>
+                </div>
+                <label class="previeTitle" style="margin-top: 20px;">預覽圖</label>
+                <div class="previewImage rounded">
+                  <label class="previeTitle">預覽圖</label>
+                </div>
+              </div>
+              <div style=" margin-left: 70px;display: inline-block; margin-top: 16px; vertical-align: top;">
+                <div>
+                  <label for="" style="margin-top: 8px; font-size: 19px;">商品編號</label> : <input name="productId"
+                    type="text" class="rounded form-control form-control-sm bg-light"
+                    style="width: 400px; display: inline-block;"><br>
+                  <label for="" style="margin-top: 8px; font-size: 19px;">商品名稱</label> : <input name="productName"
+                    type="text" class="rounded form-control form-control-sm bg-light"
+                    style="width: 400px;margin-top: 15px;display: inline-block;"><br>
+                </div>
+                <div style="margin-top: 40px;">
+                  <div style="font-size: 19px;">商品數量 : </div>
+                  <span style="color: #686868;">上架數量<span
+                      style="visibility: hidden;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>庫存數量</span>
+                  <br>
+                  <input type="text" name="shelves" class="rounded form-control form-control-sm bg-light"
+                    style="width: 160px; height: 40px;background-color: rgb(236, 233, 233); display: inline-block;">
+                  <span class="rounded" style="font-size: 19px; margin: 10px;">包</span>
+                  <input type="text" name="stock" class="rounded form-control form-control-sm bg-light"
+                    style="width: 160px; height: 40px;margin-left: 63px; background-color: rgb(236, 233, 233); display: inline-block;">
+                  <span style="font-size: 19px; margin: 10px;">包</span>
+
+                  <div style="font-size: 19px; margin-top: 25px;">商品數量 : </div>
+                  <span style="color: #686868;">販售價格<span
+                      style="visibility: hidden;">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>特價&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;成本價格</span>
+                  <br>
+                  <input type="text" name="price" class="rounded form-control form-control-sm bg-light"
+                    style="width: 160px; height: 40px;background-color: rgb(236, 233, 233);display: inline-block;">
+                  <input type="text" class="rounded form-control form-control-sm bg-light"
+                    style="width: 160px; height: 40px; background-color: rgb(236, 233, 233); margin-left: 10px;display: inline-block;">
+                  <input type="text" name="cost" class="rounded form-control form-control-sm bg-light"
+                    style="width: 160px; height: 40px; background-color: rgb(236, 233, 233);margin-left: 11px;display: inline-block;">
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="container fw-bold" style="color: aliceblue;">
+            <div class="row bg-secondary rounded">
+              <div class="bg-dark rounded" style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 25px">
+                2
+              </div>
+              <div class="col" style="font-size: 25px">
+                商品說明
+              </div>
+
+            </div>
+
+          </div>
+
+          <label style="font-size: 19px;margin-left: 40px;">商品簡介:</label> <span
+            style="font-size: 11px; color: #686868;">字數限制 | 200字以內</span> <br />
+          <input name="discription" class="rounded form-control form-control-sm bg-light" placeholder="我是商品說明"
+            style="width: 1120px; margin-left: 40px; height: 100px;display: inline-block;" />
+
+          <div>
+          </div>
+
+        </form>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+  <script>
+
+
+    // 按下後變藍字
+    $(".nav-link").on("click", function () {
+
+      let nav_text = document.getElementsByClassName("nav-link")
+      for (i = 0; i < nav_text.length; i++) {
+        nav_text[i].style.color = ""
+      }
+
+      this.style.color = '#0074d9'
+    })
+
+    $("#btnGp .btn").on("click", function () {
+
+      let btn = document.getElementsByClassName("sideBtn")
+      let btnimg = $(".sideBtn img")
+
+      for (i = 0; i < btn.length; i++) {
+        btnimg[i].src = btnimg[i].src.replace("_blue.png", ".png")
+        btn[i].style.borderColor = "";
+        btn[i].style.borderWidth = "";
+        btn[i].style.color = ""
+      }
+
+      this.getElementsByTagName("img")[0].src = this.getElementsByTagName("img")[0].src.replace(".png", "_blue.png")
+      this.style.color = " #0074d9"
+      this.style.borderColor = " #0074d9"
+      this.style.borderWidth = "4px"
+      //border-color: #0074d9;
+      //border-width: 4px;
+    })
+
+    $("#upload").on("click", function () {
+      $("#upTxt").html("儲存成功")//sucess function
+
+    })
+
+    $("#formSpace").on("click", function () {
+      $("#upTxt").html("儲存資訊")//點表單時
+    })
+
+    function postForm() {
+      // 获取表单数据
+      var formData = {
+        //discription: "abc",
+        id: $('input[name="productId"]').val(),
+        name: $('input[name="productName"]').val(),
+        price: parseInt($('input[name="price"]').val()),
+        cost: parseInt($('input[name="cost"]').val()),
+        discription: $('input[name="discription"]').val(),
+        shelves: parseInt($('input[name="shelves"]').val()),
+        stock: parseInt($('input[name="stock"]').val()),
+        discontinued: true,
+        
+        
+
+      };
+      console.log("post")
+      console.log(formData)
+      // 发送Ajax请求
+      $.ajax({
+        type: 'POST',
+        url: '/addProduct',
+        contentType: 'application/json; charset=UTF-8',
+        data: JSON.stringify(formData),
+        success: function (response) {
+          // 处理成功的响应
+          console.log("post success\n"+response);
+        },
+        error: function (error) {
+          // 处理错误响应
+          alert("id重複")
+          
+        }
+      });
+    }
+
+  </script>
+</body>
+
+</html>

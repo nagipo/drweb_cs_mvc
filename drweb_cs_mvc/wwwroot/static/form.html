@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="orderForm">
+        產品名稱 : <input type="text" name="itemName"> <br>
+        價格 : <input type="text" name="totalAmount"> <br>
+
+        <button type="button" onclick="postForm()">提交</button>
+
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+
+        function postForm() {
+            // 获取表单数据
+            var formData = {
+                itemName: $('input[name="itemName"]').val(),
+                totalAmount: $('input[name="totalAmount"]').val(),
+                tradeTime: getTime()
+            };
+            console.log("post")
+            // 发送Ajax请求
+            $.ajax({
+                type: 'POST',
+                url: '/ecpayCheckout',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(formData),
+                success: function (response) {
+                    // 处理成功的响应
+                    var newWindow = window.open("", "_self");
+                    newWindow.document.write(response);
+                    newWindow.document.close();
+                    console.log(response);
+                },
+                error: function (error) {
+                    // 处理错误响应
+
+                    console.error(error);
+                }
+            });
+        }
+        function getTime() {
+            // 取得現在的日期時間
+            var currentDate = new Date();
+
+            // 取得年、月、日、時、分、秒
+            var year = currentDate.getFullYear();
+            var month = ('0' + (currentDate.getMonth() + 1)).slice(-2); // 月份從0開始，需要加1
+            var day = ('0' + currentDate.getDate()).slice(-2);
+            var hours = ('0' + currentDate.getHours()).slice(-2);
+            var minutes = ('0' + currentDate.getMinutes()).slice(-2);
+            var seconds = ('0' + currentDate.getSeconds()).slice(-2);
+
+            // 格式化日期時間字串
+            var formattedDateTime = year + '/' + month + '/' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+            return formattedDateTime;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    
+     <!-- Bootstrap宣告 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- JS宣告 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"></script>
+    <!-- 後台基本CSS、JS -->
+    <link rel="stylesheet" href="backstage.css" />
+    <script src="backstage.js"></script>
+
+    <!-- 物流資訊JS -->
+    <script src="/backstage/logisticsSet.js" defer></script>
+
+    <link rel="stylesheet" href="logisticsSet.css" />
+  
+</head>
+<body class="d-flex " style=" align-items: center; justify-content: center; height: 100vh;min-height: 864px; min-width: 1536px">
+
+  <div style="min-height: 864px;">
+    <nav class="navbar navbar-expand-sm navbar-light "  style="margin-left: 30px;">
+        <div class="container-fluid  " >
+          <div class="navbar-brand "><a href="" style="color: #0074d9; text-decoration:none;"> <img  src="/backstage/icon/pLogo.png" alt="" style="width: 45px;"> Project</a> </div>
+
+          
+         
+
+          <div class="navbar-collapse d-flex ms-3" id="navbarSupportedContent" >
+            <ul class="navbar-nav   " style="margin-left: 85px;" >
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" href="#">商店資訊</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">物流設定</a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link " href="#"  >金流設定</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link " href="#"  >營業報表</a>
+              </li>
+            </ul>
+
+            <button id="upload" class="btn btn-sm btn-secondary ms-auto"><img src="/backstage/icon/update.png"  style="width: 33.3px ;height: 25px; margin-right: 5px; margin-bottom: 5px;" alt=""><p id="upTxt">儲存資訊</p></button>
+            
+          </div>
+
+          
+        </div>
+      </nav>
+
+      
+      <div id="content" class="d-flex  ">
+        <div class=" d-flex  flex-column   " style="margin-left: 30px; width: 184px; height: 400px;" >   
+            <div id="btnGp"  >
+              <button class="btn  mb-2 sideBtn" ><img src="/backstage/icon/shop.png"   alt="">商店設定</button>
+              <button class="btn  mb-2 sideBtn"><img src="/backstage/icon/webDesign.png"   alt="">前台設計</button>
+              <button class="btn  mb-2 sideBtn"><img src="/backstage/icon/product.png"   alt="">商品設定</button>
+              <button class="btn  mb-2 sideBtn"><img src="/backstage/icon/product.png"   alt="">訂單設定</button>
+              <button class="btn  mb-2 sideBtn"><img src="/backstage/icon/activity.png"   alt="">活動設定</button>
+              <button class="btn  mb-2 sideBtn"><img src="/backstage/icon/memberCenter.png"   alt="">會員中心</button>
+            </div>
+            <button class=" ms-3 btn  btn-light" style="margin-top: 70px;"><img src="/backstage/icon/leave.png"   alt=""><p class="ms-4" >登出</p></button>
+        </div>
+    
+        <div id="formSpace"   style="margin-left:30px ;margin-right: 30px;">
+          <div class="d-flex">
+            <div style="width: 400px;  margin-left: 40px; margin-top: 24px; display: inline-block;">
+              <div class="container fw-bold " style="color: aliceblue; margin-left: 0; width:100%">
+                <div class="row bg-secondary rounded">
+                  <div class="bg-dark rounded" style="text-align: center;max-width: 12%; margin-bottom: 0;font-size: 24px">
+                    1
+                  </div>
+                  <div class="col" style="margin-left: 15px; font-size: 24px">
+                    新增物流
+                  </div>
+                </div>
+              </div>
+  
+              <div class="shopSetSpace " style="height: 370px; padding: 20px 56px 20px 56px;">
+  
+                <div >
+                  <p style="font-size: 20px; font-weight: bold; color: #565656;">物流平台：</p>
+                  <select onchange="selected()" id="logisticsPlatform" class="form-select mb-3" style="background-color: rgba(149, 149, 149, 0.5);">
+                    <option id="beDisable" value=0>新增物流平台</option>
+                    <option value=1>賣家宅配</option>
+                    <option value=2>超商店到店</option>
+  
+                  </select>
+  
+                  <p style="font-size: 20px; font-weight: bold; color: #565656;">物流運費設定：</p>
+                  <label  style="display: block;">貨到付款</label>
+                  <input id="setCOD" placeholder="60元" class="form-control-sm bg-light" style="display: block; border-width: 0px; width: 288px;" type="text">
+                  <label  style="display: block;">冷藏宅配</label>
+                  <input id="setRefriger" placeholder="若無則免填" class="form-control-sm bg-light" style="margin-bottom: 24px; display: block;  border-width: 0px; width: 288px;" type="text">
+                
+                  <div style="width: 288px;" class="d-flex justify-content-between">
+                    <button onclick="clean()" class="btn btn-light" style="width:120px;height: 40px;"> <img src="/backstage/icon/reset.png" style="width: 20px; height: 20px; margin-bottom: 7px;" alt=""><p class="ms-3" style=" color: #909090; font-size: 20px; display: inline;">重置</p></button>
+                    <button onclick="add()" class="btn  btn-light " style="width:120px;height: 40px;  background-color: #46aa3650 ; font-size: 20px;"><img src="/backstage/icon/add.png" style="width: 20px; height: 20px; margin-bottom: 3px;" alt=""><p class="ms-3" style=" color: #4D750B; font-size: 20px; display: inline;">新增</p></button>
+                  </div>
+                </div>
+                
+                
+  
+  
+  
+              </div>
+  
+             </div> 
+  
+             <div id="logisticsTable" style="width: 776px; ; margin-left: 40px; margin-top: 24px; display: inline-block;">
+              <div class="container fw-bold" style="color: aliceblue; margin-left: 0; ">
+                <div class="row bg-secondary rounded">
+                  <div class="bg-dark rounded" style="text-align: center;max-width: 6%; margin-bottom: 0;font-size: 24px">
+                    2
+                  </div>
+                  <div class="col" style="margin-left: 15px; font-size: 24px">
+                    物流清單
+                  </div>
+                </div>
+              </div>
+  
+              <div class="shopSetSpace " style="height: 268px; padding: 20px 56px 20px 56px;">
+                <table class="table " style="border-color:#8E8E8E ; ">
+                  <thead style="background-color: #8E8E8E; ">
+                    <th scope="col">排序</th>
+                    <th scope="col">物流平台</th>
+                    <th scope="col">物流設定</th>
+                    <th scope="col">運費設定</th>
+                    <th scope="col">設定</th>
+                    <th scope="col">刪除</th>
+                  </thead>
+
+                  <tbody id="beWrite">
+                    <!-- <tr>
+                      <th scope="row">1</th>
+                      <td>賣家宅配</td>
+                      <td>一般宅配</td>
+                      <td>60元</td>
+                      <td><button onclick="set()" class="btn btn-light" style="padding: 0px;"><img style="height: 16px; width: 16px;" src="/backstage/icon_1/revise.png" alt=""></button></td>
+                      <td><button onclick="deleteTD()" class="btn btn-light" style="padding: 0px;"><img style="height: 16px; width: 16px;" src="/backstage/icon/cancel_grey.png" alt=""></button></td>
+
+                    </tr> -->
+                  </tbody>
+
+                </table>
+                
+                
+                
+  
+  
+  
+              </div>
+  
+             </div> 
+
+             <div id="logisticsReset" style="width: 776px; ; margin-left: 40px; margin-top: 24px; display: none;">
+              <div class="row bg-secondary rounded">
+                <div class="bg-dark rounded" style="text-align: center;max-width: 6%; margin-bottom: 0;font-size: 24px">
+                  2
+                </div>
+                <div class="col" style="margin-left: 15px; font-size: 24px">
+                  物流設定
+                </div>
+              </div>
+  
+              <div class="shopSetSpace d-flex" style="height: 268px; padding: 20px 56px 20px 56px;">
+                <div style="display: inline-block;">
+                  <p style="font-size: 20px; font-weight: bold; color: #565656;">物流平台：</p>
+                  <select  id="logisticsPlatformReset" class="form-select mb-3" style="background-color: rgba(149, 149, 149, 0.5); width: 312px;">
+                  
+                    <option value="1">賣家宅配</option>
+                    <option value="2">超商店到店</option>
+
+                  </select>
+                </div>
+
+                <div style="display: inline-block; margin-left: 40px;">
+                  <p style="font-size: 20px; font-weight: bold; color: #565656;">物流運費設定：</p>
+
+                  <label style="display: block;">貨到付款</label>
+                  <input id="resetCOD"  class="form-control-sm bg-light" style="display: block; border-width: 0px; width: 288px;" type="text">
+                  <label style="display: block;">冷藏宅配</label>
+                  <input id="resetRefri" class="form-control-sm bg-light" style="margin-bottom: 24px; display: block;  border-width: 0px; width: 288px;" type="text">
+                
+                  <div style="display: inline-block; width: 288px;">
+                    <div class="d-flex justify-content-between">
+                      <button onclick="cancel()" class="btn" style="width: 120px; height: 40px; background-color: rgba(	194, 0, 0, 0.2);"><img style="display: inline; width: 20px; height: 20px; margin-bottom: 7px;" src="/backstage/icon/cancel.png" alt=""><p style="margin-left: 15px; display: inline; font-size: 20px;">取消</p></button>
+                      <button id="savebtn" onclick="save()" class="btn" style="width: 120px; height: 40px; background-color: rgba(70, 170, 54, 0.2);"><img style="display: inline; width: 28px; height: 20px; margin-bottom: 7px;" src="/backstage/icon/update_green.png" alt=""><p style="margin-left: 11px; display: inline; font-size: 20px;">儲存</p></button>
+  
+                    </div>
+                  </div>
+                </div>
+
+               
+                
+                
+  
+  
+  
+              </div>
+  
+             </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    
+</body>
+</html>

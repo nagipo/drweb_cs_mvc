@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+	<!-- BOOTSTRAPE -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- JQ -->
+	<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- // 這邊是第三方登入api -->
+	<!-- 引入 Firebase -->
+	<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+	<!-- 引入 自己Firebase的資訊 -->
+	<script>
+		import { GoogleAuthProvider } from "firebase/auth";
+		const provider = new GoogleAuthProvider();
+		import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+		const auth = getAuth();
+		const firebaseConfig = {
+			apiKey: "AIzaSyB6YCeEBRQ2KrChghHA7f2dD3zaemr0ApY",
+			authDomain: "animated-axe-350313.firebaseapp.com",
+			projectId: "animated-axe-350313",
+			storageBucket: "animated-axe-350313.appspot.com",
+			messagingSenderId: "125530159088",
+			appId: "1:125530159088:web:3393e4e4c53f04b340cf35",
+			measurementId: "G-FBWW48LLZD",
+		};
+		firebase.initializeApp(firebaseConfig);
+	</script>
+	<style>
+		.login-container {
+			display: flex;
+			justify-content: center;
+			min-height: 100vh;
+		}
+
+		.form-area {
+			width: 50%;
+		}
+
+		.image-area {
+			background-image: url('./scope/scope-2.png');
+			width: 50%;
+			height: 100vh;
+			background-repeat: no-repeat;
+			background-color: #f7f7f7;
+			background-size: 100% 100%;
+			background-position: center;
+		}
+
+		.form-area .title {
+
+			margin-left: 20%;
+			margin-top: 12.5%;
+		}
+
+		.titleContext {
+			margin-left: 8%;
+		}
+
+		@media (max-width: 1200px) {
+			.image-area {
+				display: none;
+			}
+
+			h1 {
+				font-size: 64px;
+			}
+
+			.form-area {
+				width: 100%;
+			}
+
+			.form-area input,
+			.form-area button {
+				width: 90%;
+			}
+		}
+
+		@media (max-width: 768px) {
+
+			.form-area input,
+			.form-area button {
+				width: 95%;
+			}
+
+			h1 {
+				font-size: 64px;
+			}
+
+			a {
+				font-size: 1rem;
+			}
+
+		}
+
+		@media (max-width: 480px) {
+			h1 {
+				font-size: 45px;
+			}
+
+			.exitIcon {
+				width: 50% !important;
+				height: 20% !important;
+			}
+
+			.iconImg {
+				width: 10% !important;
+				height: 10% !important;
+			}
+
+			.logoImg {
+				width: 30% !important;
+				height: 20% !important;
+			}
+
+			.exitImg {
+				width: 20% !important;
+				height: 15% !important;
+			}
+
+			.form-area b {
+				font-size: 12px;
+			}
+
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+
+	<div class="container-fluid login-container">
+		<div class="form-area">
+			<div class="title">
+				<div class="titleContext" style=" margin-bottom: 7%; ">
+					<div class="logoImg" style="width: 25%; height: 20%;display: inline-block;">
+						<img src="./scope/LOGO.png" style="width: 100%; height: 100%;" alt="Logo" />
+					</div>
+					<div class="exitImg rounded"
+						style="margin-left: 35%; display: inline-block; width: 10%; height: 20%; background-color: #C20000; text-align: center;">
+						<a href="logout.html ">
+							<img src="./icon/leave.png" style="width: 20%;height: 50%;" class="exitIcon" />
+						</a>
+					</div>
+				</div>
+				<!-- 測試用的  登入後顯示-->
+				<label id="userName" style="border: 1px,solid,black;"></label>
+				<form action="#">
+					<div style="margin-left: 5%;">
+						<h1 style="font-size: 64px; position: relative; left: 0;">登入</h1>
+						<div style="display: flex; flex-direction: column; justify-content: center;">
+							<div class="mb-3">
+								<label for="username" class="form-label" style="font-size: 24px;">帳號</label>
+								<input type="text" class="form-control" id="username" placeholder="請輸入帳號"
+									style="width: 60%;height: 19%;">
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label" style="font-size: 24px;">密碼</label>
+								<input type="password" class="form-control" id="password" placeholder="請輸入密碼"
+									style="width: 60%;height: 19%;">
+							</div>
+							<div class="mb-3">
+
+								<a href=""
+									style=" color: #C1C1C1; font-size: 20px; text-decoration-line: none;">還未註冊</a><a
+									href=""
+									style="text-decoration-line: none; color: #C1C1C1; font-size: 20px; margin-left: 15%;">忘記密碼?</a>
+							</div>
+							<div class="mb-3">
+								<button id="getemail" type="submit" class="btn btn-primary"
+									style="width: 60%; height: 6%; background-color: #C31111;"><b>登入</b></button>
+							</div>
+
+							<div class="mb-3">
+								<button id="fb" class="btn btn-light"
+									style="width: 60%; height: 6%; position: relative; border: #C31111 1px solid;">
+									<img src="./icon/facebook.png" class="iconImg"
+									style="width: 5%; height: 5%; vertical-align: middle;" class="iconImg" />
+									<b>FB 登入</b>
+								</button>
+							</div>
+							<div class="mb-3">
+								<button id="google" class="btn btn-light"
+									style="width: 60%; height: 6%; position: relative; border: #C31111 1px solid;">
+									<img src="./icon/icons8-google-48.png"
+										style="width: 5%; height: 5%; vertical-align: middle;" class="iconImg"  />
+									<b>Google 登入</b>
+								</button>
+							</div>
+						</div>
+					</div>
+			</div>
+			</form>
+		</div>
+		<!-- 右側背景區 -->
+		<div class="image-area">
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			document
+				.getElementById("google")
+				.addEventListener("click", function (event) {
+					event.preventDefault(); //防止按鈕被默認點出
+					const provider = new firebase.auth.GoogleAuthProvider();
+					firebase
+						.auth()
+						.signInWithPopup(provider)
+						.then((result) => {
+							//取得對方user資訊
+							var user = result.user;
+							console.log("登入成功");
+							console.log(user);
+							document.getElementById("userName").innerText = user.displayName
+						})
+						.catch((error) => {
+							console.error("登入失敗");
+						});
+				});
+
+
+			$("#getemail").on("click", function () {
+				var email = $('#username').val();
+				var password = $('#password').val();
+				console.log(email);
+				firebase
+					.auth()
+					.createUserWithEmailAndPassword(email, password)
+					.then(result => {
+						console.log("ok");
+					}).catch(function (error) {
+						console.log(error.message)
+					});
+
+			})
+
+			$("#fb").on("click", function () {
+				const provider = new firebase.auth.FacebookAuthProvider();
+				firebase
+					.auth()
+					.signInWithPopup(provider)
+					.then((result) => {
+						var credential = result.credential;
+						var user = result.user;
+						var accessToken = credential.accessToken;
+					})
+					.catch((error) => {
+						var errorCode = error.code;
+						var errorMessage = error.message;
+						var email = error.email;
+						var credential = error.credential;
+					});
+					})
+		});
+	</script>
+</body>
+
+
+
+</html>

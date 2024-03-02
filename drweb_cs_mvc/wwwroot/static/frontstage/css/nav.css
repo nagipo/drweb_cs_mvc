@@ -1,0 +1,36 @@
+a.nav-link {
+	margin: 0 3rem;
+	color: white;
+}
+
+.navCarticon:hover {
+	border: 1px solid white !important;
+}
+
+ul.loginMenu {
+	background-color: #95A58E;
+}
+
+#navMembermenu {
+	background-color: #cfcdcd;
+}
+
+#navLogin {
+	background-color: #afcaa4;
+	color: #406d2b;
+}
+
+#navSignout {
+	background-color: #d8aeae;
+	color: #c22f2f;
+}
+
+#navOrder {
+	background-color: #b9b8b8;
+	color: white;
+}
+
+#navSetting {
+	background-color: #b9b8b8;
+	color: white;
+}

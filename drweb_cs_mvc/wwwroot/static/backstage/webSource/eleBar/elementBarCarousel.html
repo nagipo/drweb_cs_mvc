@@ -1,0 +1,256 @@
+<!-- 左邊設定列_插入元件 -->
+<div class="block formSpace " id="bar" style="align-items: center; position: fixed; padding-bottom: 150px;">
+    <div style=" text-align: center;">
+        <div class="fw-bold"
+            style="font-size:  24px; background-color: #aaaaaa; height: 60px; text-align: center; padding-top:2.5% ;">
+            輪播元件設定
+        </div>
+        <div style="padding: 20px;">
+
+            <div class="fw-bold"
+                style="font-size: 20px; margin-top: 20px; margin-bottom: 20px; text-align: left; margin-left: 7%;">
+                卡片內容設定｜
+            </div>
+            <div style="display: flex; align-items: center; margin-left: 7%;">
+                <div style="font-size: 16px; text-align: left;">
+                    輪播圖片數量：
+                </div>
+                <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                    <div class="btn-group mr-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-outline-secondary" value="1"
+                            onclick="setCardCount(1, 'container1')">1</button>
+                        <button type="button" class="btn btn-outline-secondary" value="2"
+                            onclick="setCardCount(2, 'container1')">2</button>
+                        <button type="button" class="btn btn-outline-secondary" value="3"
+                            onclick="setCardCount(3, 'container1')">3</button>
+                        <button type="button" class="btn btn-outline-secondary" value="4"
+                            onclick="setCardCount(4, 'container1')">4</button>
+                        <button type="button" class="btn btn-outline-secondary" value="5"
+                            onclick="setCardCount(5, 'container1')">5</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 裝卡片設定的容器 -->
+            <div class="container1"></div>
+
+        </div>
+    </div>
+</div>
+<script>
+
+    //id_輪播圖片
+    let nb_2_eleDiv = `b${block}_${grid}_${ele}_eleDiv_${counter}`;
+
+    // 上傳圖片//
+    // 拖移上傳圖片
+    function handleDragOver(event) {
+        event.preventDefault();
+        event.dataTransfer.dropEffect = 'copy';
+    }
+
+    function handleDrop(event, dropAreaId) {
+        event.preventDefault();
+        uploadImage(event.dataTransfer.files, dropAreaId);
+    }
+    // 點擊上傳圖片
+    function clickUpload(dropAreaId) {
+        var input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.onchange = function () {
+            uploadImage(input.files, dropAreaId);
+        };
+        input.click();
+    }
+
+    // 在全域範圍內定義原始內容（預設文字）
+    originalContent = "拖曳或點選<br>此處上傳圖片";
+    carouselImages = []; // 存储轮播图图片URL的数组
+
+    function uploadImage(files, dropAreaId) {
+        var dropArea = document.getElementById(dropAreaId);
+
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found:', dropAreaId);
+            return;
+        }
+
+        // 移除之前上傳的圖片預覽
+        while (dropArea.firstChild) {
+            dropArea.removeChild(dropArea.firstChild);
+        }
+
+        if (files.length > 0) {
+            var file = files[0];
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                var img = new Image();
+                img.src = e.target.result;
+                // ----------------------------
+                // 亨+ 將圖片弄到輪播圖
+                let imgSrc = e.target.result;
+                carouselImages.push(imgSrc);
+                updateCarousel(carouselImages);
+                // ---------------------------------- 
+                // 創建預覽區域
+                var previewDiv = document.createElement('div');
+                previewDiv.className = 'preview';
+                previewDiv.appendChild(img);
+
+                // 創建刪除按鈕
+                var deleteButton = document.createElement('button');
+                deleteButton.className = 'deleteButton';
+                deleteButton.innerHTML = 'X';
+                deleteButton.onclick = function (event) {
+                    event.stopPropagation(); // 阻止事件傳播
+                    dropArea.removeChild(previewDiv);
+                    showPlaceholderText(dropArea, originalContent); // 刪除後檢查是否顯示預設文字
+
+                    // 亨+的--------------------
+                    // 從輪播圖刪除並更新
+                    var index = carouselImages.indexOf(imgSrc);
+                    if (index > -1) {
+                        carouselImages.splice(index, 1);
+                        updateCarousel(carouselImages);
+                    }
+                    // ------------------------
+
+                };
+                previewDiv.appendChild(deleteButton);
+                dropArea.appendChild(previewDiv);
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            showPlaceholderText(dropArea, originalContent); // 如果沒有上傳圖片，檢查是否顯示預設文字
+        }
+    }
+
+    // 顯示預設文字的函數
+    function showPlaceholderText(dropArea, text) {
+        // 檢查 dropArea 是否為 null
+        if (!dropArea) {
+            console.error('Drop area not found');
+            return;
+        }
+
+        // 檢查是否已經有預設文字元素，如果有，不再添加
+        if (dropArea.querySelector('.placeholder-text')) {
+            return;
+        }
+        var placeholderText = document.createElement('div');
+        placeholderText.className = 'placeholder-text';
+        placeholderText.innerHTML = text;
+
+        dropArea.appendChild(placeholderText);
+    }
+
+    // 生成卡片相應數量的設定//
+    // 設定所選卡片數量
+    async function setCardCount(number, containerId) {
+        carouselImages = [];
+        await new Promise(resolve=>{
+            carouselElement(event,'view-' , grid_test,resolve)
+        })
+        
+        
+        
+        let localCounter = 1; // 區域變數，歸零 localCounter
+        let selectedNumber = number; // 區域變數
+        generateDivs(containerId, localCounter, selectedNumber); // 生成容器
+    }
+
+    // 生成卡片相應數量的設定
+    function generateDivs(containerId, localCounter, selectedNumber) {
+        // 清空容器內的內容
+        document.querySelector('.' + containerId).innerHTML = '';
+
+        // 插入相應數量的div
+        for (let i = 0; i < selectedNumber; i++) {
+            let newDiv = document.createElement('div');
+            newDiv.className = 'dDiv';
+ 
+            // 使用 localCounter 來生成唯一的 id
+            let uniqueId = 'dDiv-' + localCounter;
+            localCounter++;
+
+            // 插入特定的內容，使用唯一的 id
+            newDiv.innerHTML = `
+                    <div id="${uniqueId} style="margin-top: 20px">
+                        <div style="font-size: 16px; margin-top: 20px; text-align: left; margin-left: 7%;">
+                            輪播圖片-${localCounter - 1}
+                        </div>
+                        <div class="dropArea" id="b${block}_${grid}_${ele}_eleDiv_${counter + localCounter - 2}" height: 200px;
+                            style="text-align: center;display: flex;align-items: center; justify-content: space-around; margin-left: 7%; "
+                            ondragover="handleDragOver(event)" ondrop="handleDrop(event, 'b${block}_${grid}_${ele}_eleDiv_${counter + localCounter - 2}')"
+                            onclick="clickUpload('b${block}_${grid}_${ele}_eleDiv_${counter + localCounter - 2}',${i + 1})">
+                            拖曳或點選<br>此處上傳圖片
+                        </div>
+                    </div>
+                    `;
+            // 將新建的 div 插入容器中
+            document.querySelector('.' + containerId).appendChild(newDiv);
+        }
+
+
+
+
+    }
+
+    function updateCarouselNum(num) {
+        var carouselInner = $(".carousel-inner");
+        var carouselIndicators = $(".carousel-indicators");
+        carouselInner.empty(); // 清空輪播圖内部
+        carouselIndicators.empty(); // 清空指示器
+        for (let i = 0; i < num; i++) {
+            var carouselItem = $('<div class="carousel-item"></div>');
+            if (i === 0) {
+                carouselItem.addClass('active'); // 第一张图片激活
+            }
+            var imgPlaceholder = $('<img>').addClass('d-block w-auto').attr('src', 'placeholder.jpg').css('height', '100%');
+            carouselItem.append(imgPlaceholder);
+            carouselInner.append(carouselItem);
+
+            var indicatorButton = $('<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="' + i + '"></button>');
+            if (i === 0) {
+                indicatorButton.addClass('active'); // 第一个按钮激活
+            }
+            carouselIndicators.append(indicatorButton);
+        }
+        // carouselItem.append(img);
+        // carouselInner.append(carouselItem);
+    }
+
+    //  亨+的輪播圖做法
+    function updateCarousel(images) {
+        
+        console.log(images);
+        var carouselInner = $(".carousel-inner");
+        var carouselIndicators = $(".carousel-indicators");
+        carouselInner.empty(); // 清空輪播圖内部
+        carouselIndicators.empty(); // 清空指示器       
+        images.forEach(function (src, index) {
+            // 圖片設立
+            var carouselItem = $('<div class="carousel-item carousel-' + (index + 1) + '"></div>');
+            if (index === 0) {
+                carouselItem.addClass('active'); // 至少一張圖片啟動
+            }
+            var img = $('<img>').addClass('d-block w-auto').prop('src', src).css('height', '100%');
+            carouselItem.append(img);
+            carouselInner.append(carouselItem);
+            // 創建指示器按鈕
+            var indicatorButton = $('<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="' + index + '"></button>');
+            if (index === 0) {
+                indicatorButton.addClass('active'); // 至少有第一個按鈕
+                indicatorButton.prop('aria-current', 'true');
+            }
+            indicatorButton.prop('aria-label', 'Slide ' + (index + 1));
+            carouselIndicators.append(indicatorButton);
+            
+        });
+    }
+
+</script>

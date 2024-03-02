@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--==CSS========================-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="nav.css">
+	<link rel="stylesheet" href="dingcha.css">
+	<link rel="stylesheet" href="footer.css">
+	<!--Bootstrap外部連結檔案(CSS/JavaSprite)-->
+	<link rel="stylesheet" href="./_css/bootstrap.css">
+	<script src="./_js/popper.min.js"></script>
+	<script src="./main.js"></script>
+	<script src="./_js/bootstrap.js"></script>
+	<!-- <script type="text/javascript" src="./jquery.store.js"></script> -->
+	<!--web icon-->
+	<!-- <link rel="shortcut icon" href="../code-4/logo/white/logo_04.png" type="image/x-icon" /> -->
+	<!--======================================================================================================================= -->
+</head>
+
+<body>
+
+		<!--nav導覽列頭------------------------------------------------------------------------------------------------------------------------------------------->
+		<nav class="navbar navbar-expand-lg bg-light fixed-top py-0 " id="">
+			<div class="container-fluid dingchaHead py-3" style="background-color: #95A58E;">
+				<!-- Logo、官網名，連結首頁 -->
+				<a href="" class="navbar-brand ms-3 py-0">
+					<img src="./logo/white/logo_04.png" style="height: 55px; width: auto;">
+				</a>
+	
+				<!-- 響應式的導航欄 -->
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+	
+				<!-- 導覽欄About、Shopping、Connection、登入、購物車 -->
+				<div class="collapse navbar-collapse  " id="navbarNavAltMarkup">
+					<div class="navbar-nav mx-auto text-center  " >
+						<a class="nav-link" href="">Home</a>
+						<a class="nav-link" href="about01.html">About</a>
+						<a class="nav-link" href="shopping01.html">Shopping</a>
+						<a class="nav-link" href="connection01.html">Connection</a>
+					</div>
+					<!-- 登入Login、購物車按鈕icon -->
+	
+	
+					<div class="dropdown me-1 row">
+						<button class="btn  my-2 my-sm-0 dropdown-toggle col" type="button" data-bs-toggle="dropdown"
+							aria-expanded="false" style="color: #ffffff;">
+							<img src="../icon/white/member.png" class="me-2" style="height: 30px;" alt="">
+							Login
+						</button>
+						<ul class="dropdown-menu loginMenu text-center " id="navMembermenu" >
+							<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navLogin" type="button" href="./member01.html"><img src="./icon/white/login.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">登入</a></li>
+							<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navSignout" type="button" href="#"><img src="./icon/white/leave.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">登出</a></li>
+							<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navOrder" type="button" href="#"><img src="./icon/white/order.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">訂單</a></li>
+							<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navSetting" type="button" href="#"><img src="./icon/white/set.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">設定</a></li>
+						</ul>
+	
+						<button class="btn my-2 my-sm-0 col navCarticon" type="button">
+							<a href="./cart01.html"><img src="../icon/white/cart.png" style="width:30px; height: 30px;"
+									alt="購物車"></a>
+						</button>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!--nav導覽列尾---------------------------------------------------------------------------------------------------------------------------------------------->
+
+	<!-- 主要畫面 --> <!--修改左右margin-->
+	<div id="site">
+
+		<div id="content" class="mx-4">
+
+			<div class="card mb-3 w-100 p-3" style="background-color: #e9eee7; border: none;">
+				<div class="row g-0 ">
+					<div class="col-md-3">
+						<div class=" row col-12 h-75 w-auto  m-1"><img src="./product/blackTea/blacktea-3-v2.png" class="img-fluid px-0" alt="..."></div>
+						<div class="row row-cols-3  mt-4 px-2">
+							<div class="col p-1 "><img src="./product/blackTea/blackTea-1.png" class="img-fluid " alt="..."></div>
+							<div class="col p-1"><img src="./product/blackTea/blacktea-2-1.png" class="img-fluid" alt="..."></div>
+							<div class="col p-1"><img src="./product/blackTea/blacktea-2-1.png" class="img-fluid" alt="..."></div>
+						 </div>
+					</div>
+
+					<div class="col-md-9">
+						<div class="card-body cart-full-quantity px-1 px-md-5 py-5 shopping02Cardbody">
+							<p class="card-title aboutCardtitle">荔枝紅茶</p>
+
+							<p class="card-text product-price text-end me-2 my-3 fs-4">$500</p>
+
+							<p class="card-text  fs-6 fs-4 my-3 ">
+								　　沁涼夏日，品味獨特風味的荔枝紅茶。新鮮的荔枝果香與紅茶的深邃交織，帶來清新的口感，如夏日微風般撫慰心靈。每一口都是愉悅的饗宴，讓您感受到自然的甜蜜與茶香交融的絕妙滋味。盡情享受這杯荔枝紅茶，感受大自然的悠然恬淡。
+							</p>
+							<!-- 修改測試處 -->
+							<div class="row g-0 my-4 aboutBodyconnection" >
+							<!-- 修改測試處 -->
+								<div class="card-text col-md-6  ">
+									<p class="card-text col  mb-0 mt-2"></p>
+									<p class="card-text col "></p>
+								</div>
+
+								<div class="card-text col-md-4 my-2">
+									<!-- 新增商品數量框 -->
+									<form id="myform" method="POST" action="#" class="row ">
+										<label for="" class=" col-6 col-md-12  fs-4 px-0 mb-2 ">數量　|　 </label>
+										<div class="col-6 col-md-12 px-0">
+											<input type="button" value="-" class="qtyminus" field="quantity" />
+											<input type="text" value="1" class="qty p-1" name="quantity" />
+											<input type="button" value="+" class="qtyplus " field="quantity" />
+										</div>
+									</form>
+								</div>
+								<div class="card-text col-md-2 ">
+									<div class="w-100 nullSpace">　</div>
+									<li class="checkout-btn col-xs-6 shoppingAddcart">
+										<a href="#" type="submit" class="btn mt-4 add-to-cart" data-name="荔枝紅茶" data-price="500" data-image="./product/blackTea/blacktea-3-v2.png">加入購物車</a>
+									</li>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</body>
+
+<!--footer-->
+<footer class="text-center  py-2 sticky-top" style="background-color: #95A58E; ">
+	<div class="container">
+
+		<img src="../logo/white/logo_01.png" alt="版權商標" class="footer-icon-img">
+
+		<p class="mb-0">版權所有 &copy; 頂茶TopTea.</p>
+	</div>
+</footer>

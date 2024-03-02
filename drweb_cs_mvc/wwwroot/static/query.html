@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="orderForm">
+        訂單編號 : <input type="text" name="orderId"> <br>
+
+
+        <button type="button" onclick="postForm()">提交</button>
+
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+
+        function postForm() {
+            // 獲取表單資料
+            var formData = $('input[name="orderId"]').val();
+            console.log("post")
+            // 發送ajax請求
+            $.ajax({
+                type: 'POST',
+                url: '/queryOrder',
+
+                data: formData,
+                success: function (response) {
+                    // 處理成功
+
+                    // 將JSON字串轉換為JavaScript物件
+                    var jsonObject = JSON.parse(response);
+
+                    // 遍歷物件的屬性並列印
+                    for (var key in jsonObject) {
+                        if (jsonObject.hasOwnProperty(key)) {
+                            document.body.innerHTML += key + ': ' + jsonObject[key]+"<br>";
+                            console.log(key + ': ' + jsonObject[key]);
+                        }
+                    }
+                    
+                    console.log(response);
+                },
+                error: function (error) {
+                    // 處理錯誤
+
+                    console.error(error);
+                }
+            });
+        }
+
+        // function showquery(param) {
+        //     let aurl = new URL("https://www.google.com.tw/?" + param);
+        //     let params = aurl.searchParams;
+        //     for (let pair of params.entries()) {
+        //         document.body.innerHTML+=`${pair[0]}:${pair[1]}<br>`
+        //         console.log(`${pair[0]}:${pair[1]}`);
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

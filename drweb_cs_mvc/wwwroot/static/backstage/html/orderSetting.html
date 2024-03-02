@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+
+	<!-- Bootstrap宣告 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+	<!-- JS宣告 -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js"
+		integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<!-- 連CSS、JS -->
+	<link rel="stylesheet" href="backstage.css" />
+	<script src="backstage.js"></script>
+
+</head>
+
+<body class="d-flex "
+	style=" align-items: center; justify-content: center; height: 100vh;min-height: 864px; min-width: 1536px">
+
+	<div style="min-height: 864px;">
+		<!-- NAV導覽列 -->
+		<nav class="navbar navbar-expand-sm navbar-light " style="margin-left: 30px;">
+			<div class="container-fluid  ">
+				<div class="navbar-brand "><a href="" style="color: #0074d9; text-decoration:none;"> <img
+							src="./icon/pLogo.png" alt="" style="width: 45px;"> Project</a> </div>
+				<div class="navbar-collapse d-flex ms-3" id="navbarSupportedContent">
+					<ul class="navbar-nav   " style="margin-left: 85px;">
+						<li class="nav-item">
+							<a class="nav-link " aria-current="page" href="orderInfo.html">訂單資訊</a>
+						</li>
+						<li class="nav-item">
+							<a style="color: #0074d9" class="nav-link" href="orderSetting.html">編輯訂單</a>
+						</li>
+					</ul>
+
+					<button id="upload" class="btn btn-sm btn-secondary ms-auto"><img src="./icon/update.png"
+							style="width: 33.3px ;height: 25px; margin-right: 5px; margin-bottom: 5px;" alt="">
+						<p id="upTxt">儲存資訊</p>
+					</button>
+				</div>
+			</div>
+		</nav>
+
+		<!-- 左側功能列 -->
+		<div id="content" class="d-flex  ">
+			<div class=" d-flex  flex-column   " style="margin-left: 30px; width: 184px; height: 400px;">
+				<div id="btnGp">
+					<a href="shopInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/shop.png"
+								alt="">商店設定</button></a>
+					<a href="#"><button class="btn  mb-2 sideBtn"><img src="./icon/webDesign.png"
+								alt="">前台設計</button></a>
+					<a href="ProductInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+								alt="">商品設定</button></a>
+					<a href="orderInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+								alt="">訂單設定</button></a>
+					<a href="activityInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/activity.png"
+								alt="">活動設定</button></a>
+					<a href="memberInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/memberCenter.png"
+								alt="">會員中心</button></a>
+				</div>
+				<button class=" ms-3 btn  btn-light" style="margin-top: 70px;"><img src="./icon/leave.png" alt="">
+					<p class="ms-4">登出</p>
+				</button>
+			</div>
+
+			<!-- 灰色區塊內容 -->
+			<div id="formSpace" class=" mx-5 rounded" style="margin-left:30px ;margin-right: 30px;">
+				<!-- 灰色區塊內容-1訂單資訊 -->
+				<div class="bg-white rounded" style="width: 1200px; margin-left: 40px; margin-top: 30px; ">
+					<div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+						<div class="row bg-secondary rounded">
+							<div class="bg-dark rounded"
+								style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+								1
+							</div>
+							<div class="col" style="margin-left: 15px; font-size: 24px">
+								訂單資訊
+							</div>
+						</div>
+					</div>
+
+					<div style="margin-left: 55px;">
+						<form style=" padding-bottom: 20px;">
+							<div style="margin-top: 20px; display: inline-block; padding-left: -25px; font-size: 20px">
+								訂單編號 :
+								<input id="EditOrderId" class="form-control form-control-sm bg-light"
+									style="width: 400px; display: inline-block;" disabled/>
+							</div>
+							<div style="font-size: 20px; padding-left: 80px; display: inline-block; ">
+								下單時間 :
+								<input id="EditOrderTime" class="form-control form-control-sm bg-light "
+									style="width: 400px; display: inline-block;" disabled />
+							</div>
+							<br />
+
+							<div style=" margin-top: 10px; font-size: 20px;">訂單狀態 :
+								<select id="EditOrderState" class="form-control form-control-sm bg-light"
+									style="width: 400px; display: inline-block; font-size: 14px; "disabled>
+									<option>尚未處理</option>
+									<option>處理中</option>
+									<option>已成立</option>
+								</select>
+							</div>
+
+							<div
+								style="margin-top: 20px; padding: 5px;  height: 40px; width: 1088px; background: lightgray;">
+								購物明細</div>
+							<table id="EditOrdersTable"
+								style="margin-top: 10px; border-collapse: collapse; width: 1088px;border: 2px solid gray;">
+								<thead>
+
+									<tr style=" background-color: lightgray; border: 1px solid black;">
+										<th>排序</th>
+										<th>商品編號</th>
+										<th>繪圖</th>
+										<th>品名</th>
+										
+										<th>數量</th>
+										<th>單價</th>
+										
+										<th>特價</th>
+									</tr>
+								</thead>
+
+								<!-- tbody做為查詢的地方-->
+								<tbody>
+									<tr>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr style="border-top: 3px double red;">
+										<td colspan="4"></td>
+										<td>總品項:</td>
+										
+										<td>總件數:</td>
+										
+										<td>總金額:</td>
+									</tr>
+								</tfoot>
+							</table>
+						</form>
+					</div>
+				</div>
+
+				<!-- 灰色區塊內容-2訂購資訊 -->
+				<div class="bg-white rounded"
+					style="width: 1200px; margin-left: 40px; margin-top: 20px; margin-bottom: 20px;">
+					<div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+						<div class="row bg-secondary rounded">
+							<div class="bg-dark rounded"
+								style=" text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+								2
+							</div>
+							<div class="col" style="margin-left: 15px; font-size: 24px">
+								訂購人資訊
+							</div>
+						</div>
+					</div>
+
+					<form class="rounded">
+						<div style="font-size: 20px;">
+							<label style="margin-left: 56px; margin-top: 20px;">訂購姓名</label> :
+							<input id="EditOrdersName" type="text" class="rounded form-control form-control-sm bg-light"
+								style="width: 400px; margin-top: 20px; margin-right: 80px;display: inline-block;"disabled>
+							<label style="margin-left: auto;">訂購電話</label> :
+							<input id="EditOrdersPhone" type="text"
+								class="rounded form-control form-control-sm bg-light"
+								style="width: 400px;display: inline-block;"disabled><br>
+							<label style="margin-left: 56px; margin-top: 20px;">訂購郵件</label> :
+							<input id="EditOrdersMail" type="text" class="rounded form-control form-control-sm bg-light"
+								style="width: 400px; margin-top: 20px;display: inline-block;"disabled>
+							<hr style="margin-top: 20px;margin-bottom: 0;">
+
+							<label style="margin-left: 56px; margin-top: 20px;">收件姓名</label> :
+							<input id="EditOrdersRecipientName" type="text"
+								class="rounded form-control form-control-sm bg-light"
+								style="width: 400px; margin-top: 20px; margin-right: 80px;display: inline-block;"disabled>
+							<label style="margin-left: auto;">收件電話</label> :
+							<input id="EditOrdersRecipientPhone" type="text"
+								class="rounded form-control form-control-sm bg-light"
+								style="width: 400px;display: inline-block;"disabled><br>
+							<label style="margin-left: 56px; margin-top: 20px;">收件郵件</label> :
+							<input id="EditOrdersRecipientMail" type="text"
+								class="rounded form-control form-control-sm bg-light"
+								style="width: 400px; margin-top: 20px; margin-right: 80px; margin-bottom: 20px; display: inline-block;"disabled>
+							<label style="margin-left: auto;">收件地址</label> :
+							<input id="EditOrdersRecipientAddress" type="text"
+								class="rounded form-control form-control-sm bg-light"
+								style="width: 400px; display: inline-block;"disabled>
+						</div>
+					</form>
+				</div>
+
+				<!-- 灰色區塊內容-3付款資訊 -->
+				<div class="bg-white rounded"
+					style="width: 1200px; margin-left: 40px; margin-top: 20px; margin-bottom: 20px;">
+					<div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+						<div class="row bg-secondary rounded">
+							<div class="bg-dark rounded"
+								style=" text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+								3
+							</div>
+							<div class="col" style="margin-left: 15px; font-size: 24px">
+								付款資訊
+							</div>
+						</div>
+					</div>
+
+					<form class="rounded">
+						<div style="font-size: 20px;">
+							<span style="margin-left: 56px; margin-top: 20px;">付款方式 :
+								<select id="EditOrdersPayment"
+									style="width: 400px; margin-top: 20px; margin-bottom: 20px; display: inline-block;"
+									class="rounded form-select form-select-sm bg-light" disabled>
+									<option></option>
+									<option>Paypal</option>
+									<option>綠界</option>
+									<option>ATM</option>
+								</select>
+							</span><span style="margin-left: 80px;">付款狀態 :</span>
+							<select id="EditOrdersPaymentStatus"
+								style="width: 400px; margin-top: 20px; display: inline-block ;"
+								class="rounded form-select form-select-sm bg-light" disabled>
+								<option>已付款</option>
+								<option>尚未付款</option>
+
+							</select>
+						</div>
+					</form>
+				</div>
+
+				<!-- 灰色區塊內容-4運送資訊 -->
+				<div class="bg-white rounded"
+					style="width: 1200px; margin-left: 40px; margin-top: 20px; margin-bottom: 20px;">
+					<div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+						<div class="row bg-secondary rounded">
+							<div class="bg-dark rounded"
+								style=" text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+								4
+							</div>
+							<div class="col" style="margin-left: 15px; font-size: 24px">
+								運送資訊
+							</div>
+						</div>
+					</div>
+
+					<form class="rounded">
+						<div style="font-size: 20px;">
+							<span style="margin-left: 56px; margin-top: 20px;">運送方式 :
+								<select id="EditOrdersShipment"
+									style="width: 400px; margin-top: 20px; margin-bottom: 20px; display: inline-block;"
+									class="rounded form-select form-select-sm bg-light"disabled>
+									<option></option>
+									<option>賣家宅配</option>
+									<option>超商</option>
+									<option>郵局</option>
+								</select>
+							</span><span style="margin-left: 80px;">運送狀態 :</span>
+							<select id="EditOrdersShipmentStatus"
+								style="width: 400px; margin-top: 20px;display: inline-block;"
+								class="rounded form-select form-select-sm bg-light">
+								<option></option>
+								<option>已出貨</option>
+								<option>尚未出貨</option>
+							</select>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	</div>
+
+
+</body>
+
+</html>

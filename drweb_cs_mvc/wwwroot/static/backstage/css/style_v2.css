@@ -1,0 +1,311 @@
+.fullview {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.allViews {
+  flex-direction: column;
+  /* 设置子元素縱向排列 */
+  width: 100%;
+  height: 100%;
+}
+
+/*--------------- 主頁面+-號按鈕的樣式 */
+.view {
+  background-color: #dedede;
+  padding: 50px;
+  justify-content: space-between;
+  width: 90%;
+  height: 80%;
+  margin: 0.5%;
+}
+
+.btnWHP {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+#v1pBtn {
+  top: 700px;
+  left: 540px;
+}
+
+#v1rBtn {
+  top: 400px;
+  left: 540px;
+  display: none;
+}
+
+#v2pBtn {
+  top: 1460px;
+  left: 540px;
+  display: none;
+}
+
+#v2rBtn {
+  top: 1100px;
+  left: 540px;
+  display: none;
+}
+
+#v3pBtn {
+  top: 2205px;
+  left: 540px;
+  display: none;
+}
+
+#v3rBtn {
+  top: 1860px;
+  left: 540px;
+  display: none;
+}
+
+#v4rBtn {
+  top: 2620px;
+  left: 540px;
+  display: none;
+}
+
+/* #v1pBtn {
+  position: relative;
+  top: -480px;
+  left: 375px;
+}
+
+#v2pBtn,
+#v3pBtn,
+#v4pBtn {
+  position: relative;
+  top: -120px;
+  left: -130px;
+}
+
+#v1rBtn {
+  position: relative;
+  top: -380px;
+  left: 290px;
+}
+
+#v2rBtn,
+#v3rBtn,
+#v4rBtn {
+  position: relative;
+  top: -20px;
+  left: -215px;
+} */
+
+.NewBlock {
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 20px;
+}
+
+/* ----------------- */
+#bar {
+  height: 100vh;
+  width: 25%;
+  border-radius: 30px;
+  background-color: #d2d2d2;
+  flex-direction: column;
+}
+
+
+/* .view {
+  width: 70%;
+  height: 100vh;
+  padding: 50px;
+  border-radius: 30px;
+  background-color: #dedede;
+  margin-left: auto;
+  margin-right: 50px;
+} */
+
+.Row {
+  height: 25%;
+  align-items: center;
+  text-align: center;
+}
+
+.block1 {
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  margin: 10px;
+  
+  border-radius: 10px;
+}
+
+.carousel,
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+  width: auto;
+}
+
+.carousel-item>img {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  text-align: center;
+}
+
+.header-text1 {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+.header-text2 {
+  text-align: center;
+  margin-top: 3vh;
+}
+
+.border.bg-light {
+  margin: 10px;
+}
+
+/* 商店設定 */
+.fileSection {
+  border: 2px dashed dimgrey;
+  height: 80px;
+  width: 400px;
+  text-align: center;
+  padding: 1em;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.fileSection .fileText {
+  font-size: 14px;
+  color: dimgrey;
+}
+
+.previewImage {
+  margin-top: 8px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 400px;
+  border: 2px solid #8a8a8a;
+  padding: 8px;
+}
+
+.inputHidden {
+  position: absolute;
+  left: -9999px;
+}
+
+input[type="radio"]:checked+label>img {
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px 3px #366cf1;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type="radio"]+label>img {
+  border: 1px solid #444;
+  width: 150px;
+  height: 150px;
+  transition: 500ms all;
+}
+
+input[type="radio"]:checked+label>div {
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px 3px #366cf1;
+}
+
+/* Stuff after this is only to make things more pretty */
+input[type="radio"]+label>div {
+  border: 1px solid #444;
+  width: 150px;
+  height: 150px;
+  transition: 500ms all;
+}
+
+/* 商店設定 */
+/* 滑桿 */
+.formSpace {
+  overflow-y: auto;
+  border-radius: 33px;
+  background-color: #d9d9d9;
+}
+
+/* 圖片radio */
+.contentEle {
+  display: none;
+}
+
+.dropArea {
+  border: 2px dashed #858585;
+  padding: 20px;
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.preview {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #000000;
+  overflow: hidden;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* 保持等比例填滿 */
+  object-position: center;
+  /* 圖片置中 */
+}
+
+.deleteButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: red;
+  font-weight: bold;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 14px;
+}
+
+/* 虛線 */
+.dottedLine {
+  border-top: 1px dashed #707070;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.barTitFont {
+  font-size: 24px;
+  background-color: #aaaaaa;
+  height: 60px;
+  text-align: center;
+  padding-top: 2.5%;
+}
+
+.formSpaceStyle {
+  align-items: center;
+  position: fixed;
+  padding-bottom: 200px;
+  margin-left: 30px;
+}
+
+.barSecFont {
+  font-size: 20px;
+  margin-top: 20px;
+  text-align: left;
+  margin-left: 7%;
+}

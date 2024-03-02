@@ -1,0 +1,95 @@
+<div
+  class="container block0 gridblock"
+  style="height: 100%; padding-left: 0; padding-right: 0"
+  id="block0-1"
+>
+  <h3 class="text-center">選擇區塊元件</h3>
+  <div class="row" style="margin-top: 10%">
+    <div
+      class="col-3 ele-0"
+      onclick="carouselBar('1'); carouselElement(event,'view-','block0-1')"
+    >
+      <img
+        src="backstage/img/element/eleCarousel.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+    <div class="col-3 ele-0" onclick="textbar('1'); textElement1(event,'view-','block0-1')">
+      <img
+        src="backstage/img/element/eleText.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+    <div class="col-3 ele-0" onclick="fromBar('1'); formElement(event,'view-','block0-1')">
+      <img
+        src="backstage/img/element/eleFrom.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+    <div
+      class="col-3 ele-0"
+      onclick="productBar('1'); productElement(event,'view-','block0-1')"
+    >
+      <img
+        src="backstage/img/element/eleProduct.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+  </div>
+  <div class="row" style="margin-top: 10%">
+    <div class="col-3 ele-0" onclick="imgBar('1'); imgElement1(event,'view-','block0-1')">
+      <img
+        src="backstage/img/element/eleImg.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+    <div class="col-3 ele-0" onclick="videoBar('1'); videoElement(event,'view-','block0-1')">
+      <img
+        src="backstage/img/element/eleVideo.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+    <div class="col-3 ele-0" onclick="cardBar('1'); cardElement01(event,'view-','block0-1')">
+      <img
+        src="backstage/img/element/eleCard.png"
+        alt=""
+        style="width: 100%; height: 100%; object-fit: contain"
+      />
+    </div>
+  </div>
+</div>
+<script>
+  // id_重新賦值//
+  // let block0; //區塊，從1-4，共4個區塊
+  // let grid0; //元件，從1-7，共7個元件
+  // let frontId0; // id前贅字
+  // function updateViewID(view){
+  //   document.getElementById("block0-1").id=view+document.getElementById("block0-1").id
+  // }
+  // 用方法蓋掉目前的參數
+  function updateBlock(newBlockNumber, gridnum) {
+    block0 = newBlockNumber;
+    grid0 = gridnum;
+    console.log("第0區:", block0);
+    // 確保在此處更新依賴於 block0 的其他元素
+    updateElementIds();
+  }
+
+  function updateElementIds() {
+    // 更新 ID：frontId0 + 原本的id編號
+    var frontId0 = `${block0}_${grid0}_`;
+    //更新所有類別名為'ele-0'的元素的ID
+    $(".ele-0").each(function () {
+      var originalId = $(this).prop("id");
+      var newId = frontId0 + originalId;
+      $(this).prop("id", newId);
+    });
+    debugger
+  }
+</script>

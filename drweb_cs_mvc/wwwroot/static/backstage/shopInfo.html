@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Bootstrap宣告 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- JS宣告 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+  <!-- 後台基本CSS、JS -->
+  <link rel="stylesheet" href="backstage.css" />
+  <script src="backstage.js"></script>
+  <!-- 訂單資訊JS -->
+  <script src="orderInfo.js" defer></script>
+
+</head>
+
+<body class="d-flex "
+  style=" align-items: center; justify-content: center; height: 100vh;min-height: 864px; min-width: 1536px">
+
+  <div style="min-height: 864px;">
+    <!-- NAV導覽列 -->
+    <nav class="navbar navbar-expand-sm navbar-light " style="margin-left: 30px;">
+      <div class="container-fluid  ">
+        <div class="navbar-brand "><a href="" style="color: #0074d9; text-decoration:none;"> <img src="./icon/pLogo.png"
+              alt="" style="width: 45px;"> Project</a> </div>
+        <div class="navbar-collapse d-flex ms-3" id="navbarSupportedContent">
+          <ul class="navbar-nav   " style="margin-left: 85px;">
+            <li class="nav-item">
+              <a style="color: #0074d9" class="nav-link " aria-current="page" href="orderInfo.html">商店資訊</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">帳號設定</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">物流設定</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shopChart.html">營業報表</a>
+            </li>
+          </ul>
+
+          <button id="upload" class="btn btn-sm btn-secondary ms-auto"><img src="./icon/update.png"
+              style="width: 33.3px ;height: 25px; margin-right: 5px; margin-bottom: 5px;" alt="">
+            <p id="upTxt">儲存資訊</p>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 左側功能列 -->
+    <div id="content" class="d-flex  ">
+      <div class=" d-flex  flex-column   " style="margin-left: 30px; width: 184px; height: 400px;">
+        <div id="btnGp">
+          <a href="shopInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/shop.png" alt="">商店設定</button></a>
+          <a href="#"><button class="btn  mb-2 sideBtn"><img src="./icon/webDesign.png" alt="">前台設計</button></a>
+          <a href="ProductInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+                alt="">商品設定</button></a>
+          <a href="orderInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+                alt="">訂單設定</button></a>
+          <a href="activityInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/activity.png"
+                alt="">活動設定</button></a>
+          <a href="memberInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/memberCenter.png"
+                alt="">會員中心</button></a>
+        </div>
+        <button class=" ms-3 btn  btn-light" style="margin-top: 70px;"><img src="./icon/leave.png" alt="">
+          <p class="ms-4">登出</p>
+        </button>
+      </div>
+
+      <!-- 灰色區塊內容 -->
+      <div id="formSpace" class=" mx-5 rounded" style="margin-left:30px ;margin-right: 30px;">
+        <form class="" style="height: 1300px; width: 1200px; margin-left: 35px ;margin-right: 35px; margin-top: 30px;">
+          <!-- 灰色區塊內容-1商店資訊 -->
+          <div style="width: 100%; ">
+            <div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+              <div class="row bg-secondary rounded">
+                <div class="bg-dark rounded" style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+                  1
+                </div>
+                <div class="col" style="margin-left: 15px; font-size: 24px">
+                  商店資訊
+                </div>
+              </div>
+            </div>
+
+            <div class="shopSetSpace " style="height: 350px; padding-top: 20px;">
+
+              <div class="">
+                <span style="margin-left: 56px; margin-right: 25px;">
+                  <label for="shopNameInput" style="font-size: 24px; color: #565656; font-weight: bold;">商店名稱：</label>
+                  <input id="shopNameInput" class="form-control form-control-sm bg-light"
+                    style="width:  400px; display: inline;" type="text">
+                </span>
+
+                <span style="margin-right: 56px;">
+                  <label for="nameInput" style="font-size: 24px;  color: #565656; font-weight: bold;">負責人　：</label>
+                  <input id="nameInput" class="form-control form-control-sm  bg-light"
+                    style="width:  400px; display: inline;" type="text">
+                </span>
+              </div>
+
+              <div class=" ">
+                <span style="margin-left: 56px; margin-right: 25px;">
+                  <label for="phoneInput" style="font-size: 24px;  color: #565656; font-weight: bold;">連絡電話：</label>
+                  <input id="phoneInput" class="form-control form-control-sm bg-light"
+                    style="width: 400px; display: inline;" type="text">
+                </span>
+
+                <span style="margin-right: 56px;">
+                  <label for="addresInput" style="font-size: 24px;  color: #565656; font-weight: bold;">連絡地址：</label>
+                  <input id="addresInput" class="form-control form-control-sm bg-light"
+                    style=" width:400px ;display: inline;" type="text">
+                </span>
+
+
+              </div>
+              <div class="mt-3" style="margin-left: 56px; display: inline-block;">
+                <p style="font-size: 24px;  color: #565656; font-weight: bold;">商店logo：</p>
+
+              </div>
+
+              <div class="d-flex" style="margin-left: 56px; height: 127px;">
+                <label for="logoUpdate" style=" display: inline-block;">
+                  <div class="bg-light d-flex align-items-center justify-content-center"
+                    style="  height: 127px; width: 200px;">
+                    <div>
+                      <img src="icon/uploadimg.png" style="width: 31px; height: 25px; display: inline-block;" alt="">
+                      <p style="font-size: 20px; display: inline-block; color: #797979;">上傳圖片</p>
+                    </div>
+                  </div>
+                </label>
+                <input style="display: none;" id="logoUpdate" type="file">
+
+                <div class="ms-3">
+                  <p style="font-size: 20px; margin-bottom: 0px; color: #686868;">預覽圖</p>
+                  <div class="border" style="height: 97px; width: 200px; display: inline-block;">
+                    <img id="logoPreview" style= "max-height: 100%;max-width: 100%; object-fit: contain;" src="" alt="">
+                  </div>
+                </div>
+
+                <div class="ms-3" style="display: inline-block; height:91px ;">
+                  <p class=" " style="font-size: 16px; color: #606060; ">
+
+                    建議尺寸:50 x 50px <br>
+                    檔案限制: <br>
+                    　　格式:JPEG、JPG、PNG <br>
+                    　　大小:請低於5MB <br>
+                  </p>
+
+                </div>
+
+              </div>
+
+
+
+              <br>
+
+
+
+            </div>
+
+          </div>
+
+          <!-- 灰色區塊內容-2商店服務 -->
+          <div style="width: 100%; margin-top: 30px; display: none;">
+            <div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+              <div class="row bg-secondary rounded">
+                <div class="bg-dark rounded" style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+                  2
+                </div>
+                <div class="col" style="margin-left: 15px; font-size: 24px">
+                  商店服務
+                </div>
+              </div>
+            </div>
+
+            <div class="shopSetSpace "
+              style="height: 400px; padding-top:20px; padding-left: 56px; padding-right: 56px;">
+
+              <p style="font-size: 24px; font-weight: bold; color: #565656;">商店營業時間：</p>
+
+              <div>
+                <div class="openTimeSelect">
+                  <div style="margin-top: 0;">
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="monOpen">星期一</label><input id="monOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="monOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="monClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div style="margin-left: 20px;">
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="tueOpen">星期二</label><input id="tueOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded  " style="width: 410px;">
+
+                      <input id="tueOpT" class="form-control "
+                        style="display: inline-block;margin-left: 30px;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="tueClT" class="form-control "
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="wenOpen">星期三</label><input id="wenOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="wenOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="wenClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div style="margin-left: 20px;">
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="thrOpen">星期四</label><input id="thrOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="thrOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="thrClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="friOpen">星期五</label><input id="friOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="friOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="friClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div style="margin-left: 20px;">
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="satOpen">星期六</label><input id="satOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="satOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="satClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="rounded"><label class="form-check-label mx-2 align-baseline"
+                        style="font-size: 20px;  line-height:50px" for="sunOpen">星期日</label><input id="sunOpen"
+                        class="form-check-input align-baseline ms-2" type="checkbox"></div>
+                    <div class="ms-2 rounded " style="width: 410px;">
+
+                      <input id="sunOpT" class="form-control "
+                        style="display: inline-block; margin-left: 30px; margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                      <p class="ms-3" style="width: 25px; display: inline-block; font-size: 20px;">-</p>
+
+
+                      <input id="sunClT" class="form-control"
+                        style="display: inline-block;  margin-top: 5px;margin-bottom: 5px; height: 40px;  background-color:#AEAEAE; width: 150px;"
+                        type="time">
+
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <div>
+
+                </div>
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+          <!-- 灰色區塊內容-3商店介紹 -->
+          <div style="width: 100%; margin-top: 30px;">
+            <div class="container fw-bold" style="color: aliceblue; margin-left: 0; min-width: 1200px;">
+              <div class="row bg-secondary rounded">
+                <div class="bg-dark rounded" style="text-align: center;max-width: 4%; margin-bottom: 0;font-size: 24px">
+                  2
+                </div>
+                <div class="col" style="margin-left: 15px; font-size: 24px">
+                  商店介紹
+                </div>
+              </div>
+            </div>
+
+            <div class="shopSetSpace d-flex"
+              style="height: 290px; padding-top:20px; padding-left: 56px; padding-right: 56px;">
+
+              <div style="display: inline-block;">
+                <p style="font-size: 20px; font-weight: bold; color: #565656;">商店封面圖：</p>
+                <div class="d-flex">
+
+                  <div style="display: inline-block;">
+                    <label for="coverImg" class=" rounded d-flex align-items-center justify-content-center"
+                      style="height: 180px; width: 360px; background-color: rgba(186, 186, 186, 0.25); border-width: 3px ;border-style: dashed;border-color: #B0B0B0;">
+                      <div class="">
+                        <img src="icon/uploadimg.png" style="width: 31px; height: 25px; display: inline-block;" alt="">
+                        <p style="font-size: 20px; display: inline-block; color: #797979;">上傳圖片</p>
+                      </div>
+                    </label>
+                  </div>
+
+                  <input type="file" name="" id="coverImg" style="display: none;">
+
+                  <div style="display: inline-block;" class="ms-2">
+                    <p class=" " style="font-size: 12px; color: #606060; line-height: 15px; margin-bottom: 12px; ">
+
+                      建議尺寸:50 x 50px <br>
+                      檔案限制: <br>
+                      　　格式:JPEG、JPG、PNG <br>
+                      　　大小:請低於5MB <br>
+                    </p>
+
+                    <p style="font-size: 16px; color: #606060; margin-bottom: 0px;">預覽圖</p>
+                    <div
+                      style="height: 84px; width: 190px;border-style: solid ; border-width: 1px; border-color: #ABABAB;">
+                      <img style= "max-height: 100%;max-width: 100%; object-fit: contain;" id="coverPreview" src="" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="display: inline-block; margin-left: 30px;">
+
+                <label for="shopItro" style="display: block; margin-bottom: 1rem;">
+                  <p style="display: inline; font-size: 20px; font-weight: bold; color: #565656;">商店簡介：</p>
+                  <p style="display: inline; font-size: 12px; color: #878787;">字數限制|200字以內</p>
+                </label>
+
+                <textarea class="form-control"
+                  style="width: 500px; height: 180px; background-color:rgba(204, 204, 204, 0.5) ; background-color: rgba(204, 204, 204, 0.5);"
+                  id="shopItro" cols="40" rows="5" placeholder="我是商店說明"></textarea>
+
+              </div>
+
+
+              <div>
+
+              </div>
+
+
+
+
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+
+  
+</body>
+
+</html>

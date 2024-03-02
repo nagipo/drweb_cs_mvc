@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--==CSS========================-->
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<link rel="stylesheet" href="nav.css">
+	<link rel="stylesheet" href="dingcha.css">
+	<link rel="stylesheet" href="footer.css">
+	<!--Bootstrap外部連結檔案(CSS/JavaSprite)-->
+	<link rel="stylesheet" href="./_css/bootstrap.css">
+	<script src="./_js/popper.min.js"></script>
+	<script src="./main.js"></script>
+	<script src="./_js/bootstrap.js"></script>
+	<!-- <script type="text/javascript" src="./jquery.store.js"></script> -->
+	<!--web icon-->
+	<!-- <link rel="shortcut icon" href="./code-4/logo/white/logo_04.png" type="image/x-icon" /> -->
+	<!--======================================================================================================================= -->
+</head>
+
+<body>
+
+	<!--nav導覽列頭-->
+	<nav class="navbar navbar-expand-lg bg-light fixed-top py-0 " id="">
+		<div class="container-fluid dingchaHead py-3" style="background-color: #95A58E;">
+			<!-- Logo、官網名，連結首頁 -->
+			<a href="./index.html" class="navbar-brand ms-3 py-0">
+				<img src="./logo/white/logo_04.png" style="height: 55px; width: auto;">
+			</a>
+
+			<!-- 響應式的導航欄 -->
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- 導覽欄About、Shopping、Connection、登入、購物車 -->
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav mx-auto text-center  " >
+					<a class="nav-link" href="./index.html">Home</a>
+					<a class="nav-link" href="about01.html">About</a>
+					<a class="nav-link" href="shopping01.html">Shopping</a>
+					<a class="nav-link" href="connection01.html">Connection</a>
+				</div>
+				<!-- 登入Login、購物車按鈕icon -->
+
+
+				<div class="dropdown me-1 row">
+					<button class="btn  my-2 my-sm-0 dropdown-toggle col" type="button" data-bs-toggle="dropdown"
+						aria-expanded="false" style="color: #ffffff;">
+						<img src="./icon/white/member.png" class="me-2" style="height: 30px;" alt="">
+						Login
+					</button>
+					<ul class="dropdown-menu loginMenu text-center " id="navMembermenu" >
+						<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navLogin" type="button" href="#"><img src="./icon/white/login.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">登入</a></li>
+						<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navSignout" type="button" href="#"><img src="./icon/white/leave.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">登出</a></li>
+						<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navOrder" type="button" href="./member01.html"><img src="./icon/white/order.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">訂單</a></li>
+						<li><a class="dropdown-item  mx-auto mb-1 px-0 w-75 rounded" id="navSetting" type="button" href="#"><img src="./icon/white/set.png " alt="" class="me-2 mb-1" style="height: 20px;width: auto;">設定</a></li>
+					</ul>
+
+					<button class="btn my-2 my-sm-0 col navCarticon" type="button">
+						<a href="./cart01.html"><img src="./icon/white/cart.png" style="width:30px; height: 30px;"
+								alt="購物車"></a>
+					</button>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!--nav導覽列尾--------------------->
+
+	<!-- 主要畫面 --> <!--修改左右margin-->
+	<div id="site" class="siteH1">
+
+		<div id="content" class="mx-4 w-100">
+			<h1 class="h1exceptMember" >購物車</h1>
+			<form id="shopping-cart" action="cart.html" method="post">
+				<div class="shopping-cart text-center">
+
+					<!-- 上方cart-body  -->
+					<div class="row cart-head text-center rounded">
+						<div class="col-2 d-flex align-items-center">商品列表</div>
+						<div class="col-2 d-flex align-items-center">價格</div>
+						<div class="col-2 d-flex align-items-center">數量</div>
+						<div class="col-2 d-flex align-items-center">折扣後</div>
+						<div class="col-2 d-flex align-items-center">狀態</div>
+						<div class="col-2 d-flex align-items-center">總計</div>
+					</div>
+
+					<!-- 中間cart-body  -->
+					<div class="cart-body text-center rounded">
+						<!-- <div class="row cart-box rounded">
+							<div class="col-2 d-flex align-items-center">
+								<img src="./product/新增資料夾/blacktea-3.png" class="cart-img" alt="荔枝紅茶">
+								<span class="inline-block product-name">荔枝紅茶</span>
+							</div>
+							<div class="col-2 d-flex align-items-center">1</div>
+							<div class="col-2 d-flex align-items-center">9,999</div>
+							<div class="col-2 d-flex align-items-center">9,999</div>
+							<div class="col-2 d-flex align-items-center"><button class="delete-box" type="button">
+									<img src="./icon/white/delete.png" class="delete-img" alt="刪除">
+								</button></div>
+							<div class="col-2 d-flex align-items-center"></div>
+						</div> -->
+						 
+
+						<!-- <div class="row cart-box rounded">
+							<div class="col-2 d-flex align-items-center">
+								<img src="./product/新增資料夾/greentea-3.png" class="cart-img" alt="八爪綠茶">
+								<span class="inline-block product-name">八爪綠茶</span>
+							</div>
+							<div class="col-2 d-flex align-items-center">2</div>
+							<div class="col-2 d-flex align-items-center">19,998</div>
+							<div class="col-2 d-flex align-items-center">19,998</div>
+							<div class="col-2 d-flex align-items-center"><button class="delete-box" type="button">
+									<img src="./icon/white/delete.png" class="delete-img">
+								</button></div>
+							<div class="col-2 d-flex align-items-center"></div>
+						</div> -->
+						 
+
+						<!-- <div class="row cart-box rounded">
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 total-price">29,997</div>
+						</div> -->
+						 
+
+						<!-- <div class="row cart-box rounded">
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 "></div>
+							<div class="col-2 total-price"></div>
+						</div> -->
+
+						<!-- <div class="row cart-box rounded">
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 d-flex align-items-center"></div>
+							<div class="col-2 "></div>
+							<div class="col-2 total-price "></div>
+						</div> -->
+						
+											
+					</div>
+				
+				</div>
+
+				<!-- 右下方清除結帳按鈕 -->
+				<ul id="shopping-cart-actions" class="flex-container">
+
+					<li class="checkout-btn">
+						<input type="submit" name="delete"  class="btn me-3 text-center clear01"  value="清除" />
+						<a href="./cart03.html" type="submit" class="btn text-center cartCheckout py-1" >結帳</a>
+					</li>
+
+				</ul>
+				
+			</form>
+		</div>
+
+	</div>
+</body>
+
+<!--footer-->
+<footer class="text-center py-2 sticky-top" style="background-color: #95A58E;">
+	<div class="container">
+
+		<img src="./logo/white/logo_01.png" alt="版權商標" class="footer-icon-img">
+
+		<p class="mb-0">版權所有 &copy; 頂茶TopTea.</p>
+	</div>
+</footer>

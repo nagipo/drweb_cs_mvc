@@ -1,0 +1,213 @@
+/* 卡片1-5 */
+.cardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: green;
+}
+
+.card-title{
+    font-size: 28px;
+}
+
+.card-text{
+    font-size: 18px;
+}
+
+/*卡片6-7*/
+
+.container {
+    position: relative;
+    /* background-color: antiquewhite; */
+}
+
+#backImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: -1;
+
+}
+
+#textLeft {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-30%, -50%);
+    text-align: left;
+
+}
+
+#textCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+#textHead {
+    font-size: 5rem;
+    color: #FFFFFF;
+
+}
+
+#textBody {
+    font-size: 1.5rem;
+    color: #366CF1;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        height: 100%;
+    }
+
+    #backImg {
+        object-fit: cover;
+    }
+
+    #textLeft {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        text-align: center;
+    }
+
+    #textCenter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -20%);
+        text-align: center;
+    }
+
+
+    #textHead {
+        font-size: 3rem;
+
+    }
+
+    #textBody {
+        font-size: 1.5rem;
+
+    }
+
+   #textDiv {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+} 
+
+/*carousel*/
+.carousel-item>img {
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    /* 水平置中 */
+    align-items: center;
+    /* 垂直置中 */
+
+}
+
+/* 表單 */
+/* .row-item>img {
+    height: auto;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+} */
+
+.headerText1{
+    text-align: center; 
+    margin-top: 10vh;
+}
+
+.headerText2{
+    text-align: center;  
+    margin-top: 3vh;
+}
+.imageArea02 {
+    background-color: #D3D3D3;
+    text-align: center;
+    /* 圖片居中顯示 */
+    padding: 15px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.formArea {
+    background-color: #D3D3D3;
+    /*border: 1px solid #f3eded;*/
+    float: right;
+    padding: 20px;
+}
+
+#send {
+    background-color: #8F8F8F;
+    border: none;
+    width: 100%;
+}
+
+/*圖片*/
+.imgElement01 {
+    height: 85%;
+    width: 85%;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .imgElement01 {
+        height: 100%;
+        width: 100%;
+    }
+} 
+
+.imgElement02 {
+    height: auto;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+}
+
+.imgElement03{
+    height: auto;
+    display: block;
+    margin: auto;
+    object-fit: contain;
+}
+
+/*商品*/
+.productImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.btn.btn-primary{
+    float:right; 
+    background-color:#8F8F8F ; 
+    border-color: #8F8F8F;
+}

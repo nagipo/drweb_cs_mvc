@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <!-- Bootstrap宣告 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <!-- JS宣告 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
+
+  <!-- 後台基本CSS、JS -->
+  <link rel="stylesheet" href="backstage.css" />
+  <script src="backstage.js"></script>
+  <!-- 會員資料表格JS -->
+  <script src="memberInfo.js" defer></script>
+
+</head>
+
+<body class="d-flex "
+  style=" align-items: center; justify-content: center; height: 100vh;min-height: 864px; min-width: 1536px">
+
+  <div style="min-height: 864px;">
+    <!-- NAV導覽列 -->
+    <nav class="navbar navbar-expand-sm navbar-light " style="margin-left: 30px;">
+      <div class="container-fluid  ">
+        <div class="navbar-brand "><a href="" style="color: #0074d9; text-decoration:none;"> <img src="./icon/pLogo.png"
+              alt="" style="width: 45px;"> Project</a> </div>
+        <div class="navbar-collapse d-flex ms-3" id="navbarSupportedContent">
+          <ul class="navbar-nav   " style="margin-left: 85px;">
+            <li class="nav-item">
+              <a style="color: #0074d9" class="nav-link " href="#">會員資訊</a>
+            </li>
+          </ul>
+
+          <button id="upload" class="btn btn-sm btn-secondary ms-auto"><img src="./icon/update.png"
+              style="width: 33.3px ;height: 25px; margin-right: 5px; margin-bottom: 5px;" alt="">
+            <p id="upTxt">儲存資訊</p>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 左側功能列 -->
+    <div id="content" class="d-flex  ">
+      <div class=" d-flex  flex-column   " style="margin-left: 30px; width: 184px; height: 400px;">
+        <div id="btnGp">
+          <a href="shopInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/shop.png" alt="">商店設定</button></a>
+          <a href="#"><button class="btn  mb-2 sideBtn"><img src="./icon/webDesign.png" alt="">前台設計</button></a>
+          <a href="ProductInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+                alt="">商品設定</button></a>
+          <a href="orderInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/product.png"
+                alt="">訂單設定</button></a>
+          <a href="activityInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/activity.png"
+                alt="">活動設定</button></a>
+          <a href="memberInfo.html"><button class="btn  mb-2 sideBtn"><img src="./icon/memberCenter.png" alt="">會員中心</button></a>
+        </div>
+        <button class=" ms-3 btn  btn-light" style="margin-top: 70px;"><img src="./icon/leave.png" alt="">
+          <p class="ms-4">登出</p>
+        </button>
+      </div>
+
+      <!-- 灰色區塊內容 -->
+      <div id="formSpace" class=" mx-5 rounded">
+        <!-- 灰色區塊內容-會員資訊 -->
+        <div id="contextDiv">
+          <table id="contextTable" class="table table-border align-middle">
+            <thead>
+              <tr>
+                <th scope="col">排序</th>
+                <th scope="col">會員編號</th>
+                <th scope="col">會員名稱</th>
+                <th scope="col">電子郵件</th>
+                <th scope="col">消費總額</th>
+                <th scope="col">紅利點數</th>
+              </tr>
+            </thead>
+
+            <tbody id="bodyContext"> </tbody>
+
+          </table>
+        </div>
+
+        <!-- 分頁標籤 -->
+        <div id="pageBtn" class="btn-group">
+          <button type="button" id="prepage" class="btn btn-light">上一頁</button>
+          <button type="button" id="page" class="btn btn-light">1/10頁</button>
+          <button type="button" id="nextpage" class="btn btn-light">下一頁</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+</html>

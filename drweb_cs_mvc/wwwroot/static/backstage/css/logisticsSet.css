@@ -1,0 +1,15 @@
+.table thead th{
+    color: white;
+  }
+
+  td button{
+    width: 32px;
+    height: 28px;
+  }
+
+  td{
+    line-height: 28px;
+  }
+  tr th{
+    line-height: 28px;
+  }
