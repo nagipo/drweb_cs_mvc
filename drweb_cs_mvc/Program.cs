@@ -1,5 +1,7 @@
+using drweb_cs_mvc.interfaceForDI;
 using drweb_cs_mvc.internal_interface;
 using drweb_cs_mvc.Models;
+using drweb_cs_mvc.Models.dao;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<login_service, loginServiceImpl>();
+builder.Services.AddSingleton<loginDao, logindaoImpl>();
 
 var app = builder.Build();
 
