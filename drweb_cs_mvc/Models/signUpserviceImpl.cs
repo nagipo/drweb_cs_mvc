@@ -5,9 +5,15 @@ namespace drweb_cs_mvc.Models
 {
 	public class signUpserviceImpl : signUpService
 	{
+		loginDao dao;
+		public signUpserviceImpl(loginDao dao)
+		{
+			this.dao = dao;
+		}
 		public int create(signUp_dto dto)
 		{
-			throw new NotImplementedException();
+			int result = dao.create(dto);
+			return result;
 		}
 	}
 }

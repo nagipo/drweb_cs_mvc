@@ -12,7 +12,7 @@ namespace drweb_cs_mvc.Models
         }
         public int checkAccount(string clientAccount, string clientPassword)
         {
-            string? password= dao.findByAccount(clientAccount);
+            string? password= dao.findPasswordByAccount(clientAccount);
             if (password == null )
             {
                 return 1;

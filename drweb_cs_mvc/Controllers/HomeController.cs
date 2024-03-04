@@ -29,11 +29,18 @@ namespace drweb_cs_mvc.Controllers
             return View();
         }
         [Route("backstage")]
-		public IActionResult mainIndex()
-		{
-			return View();
-		}
-
+        public IActionResult mainIndex()
+        {
+            if (HttpContext.Session != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("login", "Home");
+            }
+        }
+		[Route("logout")]
 		public IActionResult Logout()
 		{
 			
@@ -46,7 +53,8 @@ namespace drweb_cs_mvc.Controllers
 
 		[Route("signup")]
 		public IActionResult signUp()
-		{
+		{   
+
 			return View();
 		}
 

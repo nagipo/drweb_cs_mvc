@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddSingleton<login_service, loginServiceImpl>();
 builder.Services.AddSingleton<loginDao, logindaoImpl>();
+builder.Services.AddSingleton<signUpService, signUpserviceImpl>();
 
 var app = builder.Build();
 

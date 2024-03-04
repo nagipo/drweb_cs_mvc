@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace drweb_cs_mvc.Views.Home
 {
-    public class Index1Model : PageModel
+    public class signUp : PageModel
     {
         public void OnGet()
         {

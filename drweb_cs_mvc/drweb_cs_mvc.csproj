@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <PackageReference Include="QuickChart" Version="2.3.0" />
   </ItemGroup>
 
 </Project>

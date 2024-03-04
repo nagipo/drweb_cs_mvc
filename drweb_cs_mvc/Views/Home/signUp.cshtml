@@ -30,7 +30,7 @@
 			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 		}
 		.background-image {
-			background-image: url('backstage/banner/p_banner-2.png');
+			background-image: url('static/backstage/banner/p_banner-2.png');
 			width: 100vh;
 			height: 100vh;
 			background-repeat: no-repeat;
@@ -86,13 +86,13 @@
 	<div class="container-fluid login-container d-flex justify-content-between">
 		<a href="logout.html" class="exitImg rounded btn mb-auto" style="background-color: #C00000">
 			
-			<img src="backstage/icon/leave_white.png" class="exitIcon" />
+			<img src="~ststic/backstage/icon/leave_white.png" class="exitIcon" />
 		
 		</a>
 		<div class="form-area rounded">
 			<div style="margin-left: 4%;">
-			<div style="margin-bottom: 1%;">			
-				<img src="/backstage/icon/project.png" class="pLogo" style="margin-bottom: 2%;  height: 40px;">
+			<div style="margin-bottom: 1%;">
+					<img src="~ststic//backstage/icon/project.png" class="pLogo" style="margin-bottom: 2%;  height: 40px;">
 				
 			</div>
 			<!-- 登入表單標題 -->
@@ -164,7 +164,7 @@
 			}
 
 			$.ajax({
-				url:"/signup",
+				url: "api/signUp_api",
 				method:"post",
 				data: JSON.stringify(data),
 				contentType: "application/json",
