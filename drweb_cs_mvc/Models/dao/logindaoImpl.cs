@@ -1,4 +1,5 @@
-﻿using drweb_cs_mvc.interfaceForDI;
+﻿using drweb_cs_mvc.DTO;
+using drweb_cs_mvc.interfaceForDI;
 using MySql.Data.MySqlClient;
 
 namespace drweb_cs_mvc.Models.dao
@@ -11,13 +12,13 @@ namespace drweb_cs_mvc.Models.dao
           this.conn = new MySqlConnection(connectstring);
         }
 
-        public string findByAccount(string account)
+        public string findPasswordByAccount(string account)
         {
             if (conn == null)
             {
                 conn = new MySqlConnection(connectstring);
             }
-            string sql = "select password from shop_info where account=@value1";
+            string sql = "select password from shop_info where email=@value1";
             try
             {
                 conn.Open();
@@ -43,5 +44,15 @@ namespace drweb_cs_mvc.Models.dao
             }
             return null;
         }
-    }
+
+		int loginDao.create(signUp_dto dto)
+		{
+            if (conn == null) {
+				conn = new MySqlConnection(connectstring);
+			}
+            string sql = "insert into ";
+
+			return 0;
+		}
+	}
 }

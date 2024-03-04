@@ -16,10 +16,12 @@ namespace drweb_cs_mvc.Controllers
         [HttpPost]
         public string Post([FromBody] login_dto data)
         {
+            Console.WriteLine(data.account+"-"+data.password);
             int check=service.checkAccount(data.account, data.password);
             if (check == 0)
-            {
-                return "ok";
+            {   
+                HttpContext.Session.SetString("account",data.account);
+                return "login_success";
             }else
             {
                 return "false";
@@ -27,4 +29,8 @@ namespace drweb_cs_mvc.Controllers
             
         }
     }
+
+    
+	
+
 }

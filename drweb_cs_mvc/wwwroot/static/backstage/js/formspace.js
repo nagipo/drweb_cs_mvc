@@ -6,7 +6,7 @@ $(document).ready(function() {
 			$("#upload").off("click");
 			var buttonId = this.id;
 			console.log(buttonId);
-			var filename = "/backstage/html/" + buttonId + ".html #formSpace>*";
+			var filename = "static/backstage/html/" + buttonId + ".html #formSpace>*";
 			// 載入內容並在載入完成後執行回調
 			$("#formSpace").load(filename, function() {
 				// 這裡寫入載入內容後需要執行的代碼

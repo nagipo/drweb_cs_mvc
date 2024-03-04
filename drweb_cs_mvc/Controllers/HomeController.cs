@@ -28,8 +28,29 @@ namespace drweb_cs_mvc.Controllers
         {
             return View();
         }
+        [Route("backstage")]
+		public IActionResult mainIndex()
+		{
+			return View();
+		}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+		public IActionResult Logout()
+		{
+			
+			HttpContext.Session.Clear();
+
+			
+
+			return RedirectToAction("login", "Home");
+		}
+
+		[Route("signup")]
+		public IActionResult signUp()
+		{
+			return View();
+		}
+
+		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
