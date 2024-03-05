@@ -1,8 +1,9 @@
-﻿using drweb_cs_mvc.Models.dao;
+﻿using drweb_cs_mvc.interfaceForDI;
+using drweb_cs_mvc.Models.dao;
 
 namespace drweb_cs_mvc.Models
 {
-	public class chartService
+	public class chartServiceImpl:chartService
 	{
 		chartDao dao = new chartDao();
 		public int getTodayRevenue(int id ) {
@@ -30,9 +31,9 @@ namespace drweb_cs_mvc.Models
 			return result;
 		}
 
-		public Dictionary<string,int> getBestSelling(int id)
+		public List<List<string>> getBestSelling(int id)
 		{
-			Dictionary<string,int>result= new Dictionary<string,int>();
+			List<List<string>> result = dao.getBestSelling(id);
 
 
 			return result;

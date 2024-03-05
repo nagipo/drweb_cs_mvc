@@ -15,13 +15,14 @@ namespace drweb_cs_mvc.Models.dao
           this.conn = new MySqlConnection(connectstring);
         }
 
-        public string findPasswordByAccount(string account)
+        public string[] findPasswordByAccount(string account)
         {
-            if (conn == null)
+			string[] result = new string[2];
+			if (conn == null)
             {
                 conn = new MySqlConnection(connectstring);
             }
-            string sql = "select password from shop_info where email=@value1";
+            string sql = "select password,id from shop_info where email=@value1";
             try
             {
                 conn.Open();
@@ -30,8 +31,13 @@ namespace drweb_cs_mvc.Models.dao
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    return reader["password"].ToString();
-                }
+					result[0] = reader.GetString("password");
+					
+					result[1] = reader.GetInt32("id").ToString();
+					Console.WriteLine(result);
+
+				}
+				
             }
             catch (Exception ex)
             {
@@ -45,7 +51,7 @@ namespace drweb_cs_mvc.Models.dao
                     conn.Close();
                 }
             }
-            return null;
+            return result;
         }
 
 		public int create(signUp_dto dto)

@@ -2,6 +2,6 @@
 {
     public interface login_service
     {
-        int checkAccount(string clientAccount, string clientPassword);
+        int? checkAccount(string clientAccount, string clientPassword);
     }
 }

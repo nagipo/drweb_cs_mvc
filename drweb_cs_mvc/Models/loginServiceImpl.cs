@@ -10,19 +10,20 @@ namespace drweb_cs_mvc.Models
         {
             this.dao = dao;
         }
-        public int checkAccount(string clientAccount, string clientPassword)
+        public int? checkAccount(string clientAccount, string clientPassword)
         {
-            string? password= dao.findPasswordByAccount(clientAccount);
-            if (password == null )
+            string[] query= dao.findPasswordByAccount(clientAccount);
+            
+            if (query[0] == null )
             {
-                return 1;
+                return null;
             }
-            if (password == clientPassword)
+            if (query[0] == clientPassword)
             {
-                return 0;
+                return int.Parse(query[1]) ;
             }else
             {
-                return 2;
+                return null;
             }
         }
     }

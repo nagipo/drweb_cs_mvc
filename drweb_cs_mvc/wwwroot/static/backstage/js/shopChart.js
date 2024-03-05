@@ -21,7 +21,7 @@ function chart() {
 
 	$.ajax({
 		url: `/bestsell`,
-		method: 'POST',
+		method: 'GET',
 		success: function(response) {
 			drawBar(response);
 			console.log(response)

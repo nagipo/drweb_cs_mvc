@@ -22,6 +22,10 @@ namespace drweb_cs_mvc.Models.dao
 			string sql = "SELECT * FROM orders WHERE DATE(order_date) = CURDATE() AND shop_id=@value1";
 			try
 			{
+				if (conn.State == System.Data.ConnectionState.Closed)
+				{
+					conn.Open();
+				}
 				conn.Open();
 				MySqlCommand command = new MySqlCommand(sql, conn);
 				command.Parameters.AddWithValue("@value1", shopid);
@@ -56,7 +60,10 @@ namespace drweb_cs_mvc.Models.dao
 			string sql = "SELECT * FROM orders WHERE MONTH(order_date) = MONTH(CURDATE()) AND YEAR(order_date) = YEAR(CURDATE()) AND shop_id = @value1;";
 			try
 			{
-				conn.Open();
+				if (conn.State == System.Data.ConnectionState.Closed)
+				{
+					conn.Open();
+				}
 				MySqlCommand command = new MySqlCommand(sql, conn);
 				command.Parameters.AddWithValue("@value1", shopid);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -90,7 +97,10 @@ namespace drweb_cs_mvc.Models.dao
 			string sql = "SELECT COUNT(*) AS total_count FROM orders WHERE shop_id = @value1;";
 			try
 			{
-				conn.Open();
+				if (conn.State == System.Data.ConnectionState.Closed)
+				{
+					conn.Open();
+				}
 				MySqlCommand command = new MySqlCommand(sql, conn);
 				command.Parameters.AddWithValue("@value1", shopid);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -124,7 +134,10 @@ namespace drweb_cs_mvc.Models.dao
 			string sql = "SELECT COUNT(*) AS total_count FROM member WHERE shop_id = @value1;";
 			try
 			{
-				conn.Open();
+				if (conn.State == System.Data.ConnectionState.Closed)
+				{
+					conn.Open();
+				}
 				MySqlCommand command = new MySqlCommand(sql, conn);
 				command.Parameters.AddWithValue("@value1", shopid);
 				MySqlDataReader reader = command.ExecuteReader();
@@ -148,6 +161,46 @@ namespace drweb_cs_mvc.Models.dao
 			return null;
 		}
 
+		public List<List<string>> getBestSelling(int shopid)
+		{
+			List<List<string>> result =new List<List<string>>();
+			if (conn == null)
+			{
+				conn = new MySqlConnection(connectstring);
+			}
+			string sql = "SELECT p.name AS productName, COALESCE(SUM(od.quantity), 0) AS totalQuantitySold FROM Products p LEFT JOIN Orderdetails od ON p.id = od.productsid WHERE p.shop_id = @value1 GROUP BY p.id, p.name ORDER BY totalQuantitySold DESC;";
+			try
+			{
+				if (conn.State == System.Data.ConnectionState.Closed)
+				{
+					conn.Open();
+				}
+				MySqlCommand command = new MySqlCommand(sql, conn);
+				command.Parameters.AddWithValue("@value1", shopid);
+				MySqlDataReader reader = command.ExecuteReader();
+				while (reader.Read())
+				{
+					string productName = reader["productName"].ToString();
+					string totalQuantitySold = reader["totalQuantitySold"].ToString();
+					List<string> row = new List<string>();
+					row.Add(productName);
+					row.Add(totalQuantitySold);
+					result.Add(row);
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Error: " + ex.Message);
 
+			}
+			finally
+			{
+				if (conn.State == System.Data.ConnectionState.Open)
+				{
+					conn.Close();
+				}
+			}
+			return result;
+		}
 	}
 }

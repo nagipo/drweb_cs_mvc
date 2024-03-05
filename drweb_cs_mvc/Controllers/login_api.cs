@@ -9,19 +9,23 @@ namespace drweb_cs_mvc.Controllers
     public class login_api:ControllerBase
     {
         private login_service service;
-        public login_api(login_service service)
+        private IHttpContextAccessor context;
+
+		public login_api(login_service service, IHttpContextAccessor context)
         {
             this.service = service;
+            this.context = context;
         }
         [HttpPost]
         public string Post([FromBody] login_dto data)
         {
-            Console.WriteLine(data.account+"-"+data.password);
-            int check=service.checkAccount(data.account, data.password);
-            if (check == 0)
+            
+            int? check=service.checkAccount(data.account, data.password);
+            if (check.HasValue)
             {   
-                HttpContext.Session.SetString("account",data.account);
-                return "login_success";
+                context.HttpContext.Session.SetString("account",data.account);
+                context.HttpContext.Session.SetInt32("shopid", check.Value);
+				return "login_success";
             }else
             {
                 return "false";
