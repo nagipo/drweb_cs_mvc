@@ -57,8 +57,12 @@ namespace drweb_cs_mvc.Controllers
 		{
 			int shopid = context.HttpContext.Session.GetInt32("shopid").Value;
 			var data = service.getBestSelling( shopid);
+			string json = JsonConvert.SerializeObject(data);
+			context.HttpContext.Session.SetString("bestsell",json);
+			
 
-			context.HttpContext.Session.SetString("bestsell", JsonConvert.SerializeObject(data));
+			// 打印 JSON 格式的字符串
+			Console.WriteLine(json);
 			return Ok(data);
 		}
 	}
@@ -109,9 +113,12 @@ namespace drweb_cs_mvc.Controllers
 		{
 			
 			int shopid = context.HttpContext.Session.GetInt32("shopid").Value;
-			string? bestSell = context.HttpContext.Session.GetString("bestsell");
-			string? lastFewMonth = context.HttpContext.Session.GetString("lastFewMonth");
 
+
+
+			
+			var bestSell = service.getBestSelling(shopid);
+			var lastFewMonth =  service.getLastFewMonth(shopid);
 			exportPdf export =new exportPdf(lastFewMonth, bestSell);
 			var data = export.export();
 

@@ -1,5 +1,10 @@
-﻿using Aspose.Pdf;
+﻿
+using drweb_cs_mvc.interfaceForDI;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Newtonsoft.Json;
+using OfficeOpenXml;
+using OfficeOpenXml.Drawing;
 using QuickChart;
 using System.Collections;
 using System.Reflection.Metadata;
@@ -7,12 +12,13 @@ using System.Reflection.Metadata;
 namespace drweb_cs_mvc.export
 {
 	public class exportPdf
-	{
-		Dictionary<string, int> lastFewMonth;
-		List<List<int>> bestsell;
-		public exportPdf(string lastFewMonth,string bestsell) {
-			this.lastFewMonth = JsonConvert.DeserializeObject<Dictionary<string, int>>(lastFewMonth);
-			this.bestsell = JsonConvert.DeserializeObject<List<List<int>>>(bestsell);
+	{	
+		
+		Dictionary<string, int>? lastFewMonth;
+		List<List<string>>? bestsell;
+		public exportPdf(Dictionary<string, int>? lastFewMonth, List<List<string>>? bestsell) {
+			this.lastFewMonth = lastFewMonth;
+			this.bestsell =bestsell;
 		}
 
 		public byte[] export() {
@@ -42,39 +48,58 @@ namespace drweb_cs_mvc.export
 			qc.Version = "2.9.4";
 			qc.Config =json;
 			byte[] imageBytes = qc.ToByteArray();
-			MemoryStream memoryStream = new MemoryStream(imageBytes);
+			string imagePath = @"C:\Users\User\Pictures\your_image.jpg";
+			//System.IO.File.WriteAllBytes(imagePath, imageBytes);
+
+			FileStream fileStream = new FileStream(imagePath, FileMode.Open);
+			fileStream.Close();
 
 
-			int lowerLeftX = 100;
-			int lowerLeftY = 100;
-			int upperRightX = 200;
-			int upperRightY = 200;
+			iTextSharp.text.Document document = new iTextSharp.text.Document();
+			MemoryStream memoryStream = new MemoryStream();
 
-			var pdf = new Aspose.Pdf.Document();
-			pdf.Pages.Add();
+			PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
 
-			Page page = pdf.Pages[0];
-			page.Resources.Images.Add(memoryStream);
-			page.Contents.Add(new Aspose.Pdf.Operators.GSave());
+			// 打开文档
+			document.Open();
+			Image image = Image.GetInstance(imagePath);
+			document.Add(image);
 
-			// 創建矩形和矩陣對象
-			Aspose.Pdf.Rectangle rectangle = new Aspose.Pdf.Rectangle(lowerLeftX, lowerLeftY, upperRightX, upperRightY);
-			Matrix matrix = new Matrix(new double[] { rectangle.URX - rectangle.LLX, 0, 0, rectangle.URY - rectangle.LLY, rectangle.LLX, rectangle.LLY });
+			
 
-			// 使用 ConcatenateMatrix（連接矩陣）運算符：定義必須如何放置圖像
-			page.Contents.Add(new Aspose.Pdf.Operators.ConcatenateMatrix(matrix));
-			XImage ximage = page.Resources.Images[page.Resources.Images.Count];
 
-			// 使用 Do 運算符：此運算符繪製圖像
-			page.Contents.Add(new Aspose.Pdf.Operators.Do(ximage.Name));
+			document.Close();
 
-			// 使用 GRestore 運算符：此運算符恢復圖形狀態
-			page.Contents.Add(new Aspose.Pdf.Operators.GRestore());
+			// 将内存流转换为 byte[] 数组
+			byte[] pdfBytes = memoryStream.ToArray();
+			ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+			using (ExcelPackage excelPackage = new ExcelPackage())
+			{
+				// 添加一个工作表
+				ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
 
-			MemoryStream pdfStream = new MemoryStream();
-			pdf.Save(pdfStream);
-			byte[] pdfBytes = pdfStream.ToArray();
-			pdfStream.Close();
+				// 写入标题行
+				worksheet.Cells[1, 1].Value = "商品名稱";
+				worksheet.Cells[1, 2].Value = "累積售出";
+
+			
+				int row = 2;
+				foreach (var kvp in bestsell)
+				{
+					worksheet.Cells[row, 1].Value = kvp[0];
+					worksheet.Cells[row, 2].Value = kvp[1];
+					row++;
+				}
+				ExcelPicture picture = worksheet.Drawings.AddPicture("Image", new MemoryStream(imageBytes));
+				picture.SetPosition(5, 5, 2, 0);
+
+
+				string filePath = @"C:\Users\User\Pictures\your_sheet.xlsx";
+				File.WriteAllBytes(filePath, excelPackage.GetAsByteArray());
+
+				Console.WriteLine("Excel文件已生成：" + filePath);
+			}
+
 
 			return pdfBytes;
 		}
