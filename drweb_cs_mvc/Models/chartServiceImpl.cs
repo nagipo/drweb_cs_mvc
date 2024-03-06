@@ -5,7 +5,11 @@ namespace drweb_cs_mvc.Models
 {
 	public class chartServiceImpl:chartService
 	{
-		chartDao dao = new chartDao();
+		chartDao dao;
+		public chartServiceImpl(chartDao dao)
+		{
+			this.dao = dao;
+		}
 		public int getTodayRevenue(int id ) {
 			int result = dao.TodayRevenue(id);
 
@@ -37,6 +41,13 @@ namespace drweb_cs_mvc.Models
 
 
 			return result;
+		}
+
+		public Dictionary<string,int> getLastFewMonth(int id)
+		{
+			Dictionary<string, int> result=dao.getLastFewMonth(id);
+			return result ;
+
 		}
 	}
 }

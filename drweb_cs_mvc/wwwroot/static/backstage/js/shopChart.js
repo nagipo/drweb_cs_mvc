@@ -223,4 +223,35 @@ function chart() {
 		}
 	};
 	const orderPaymentChart = new Chart(oPCtx, oPConfig);
+
+	
+}
+
+function getPdf() {
+	$.ajax({
+		url: `/exportChart`,
+		method: 'GET',
+
+		success: function (data) {
+			var blob = new Blob([data], { type: 'application/pdf' });
+			var url = window.URL.createObjectURL(blob);
+
+			// 創建一個隱藏的超連結
+			var a = document.createElement('a');
+			a.style.display = 'none';
+			a.href = url;
+			a.download = 'output.pdf'; // 下載文件的名稱
+
+			// 將超連結添加到 DOM 中
+			document.body.appendChild(a);
+
+			// 觸發超連結的點擊事件，從而觸發文件下載
+			a.click();
+
+			// 刪除創建的超連結
+			window.URL.revokeObjectURL(url);
+
+		},
+	})
+
 }

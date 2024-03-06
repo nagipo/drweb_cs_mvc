@@ -7,5 +7,6 @@
 		int? ordersSum(int id);
 		int? getMemberSum(int id);
 		List<List<string>> getBestSelling(int id);
+		Dictionary<string, int> getLastFewMonth(int id);
 	}
 }
