@@ -116,8 +116,9 @@ function addNewProduct(productIdPOST, newProductData) {
 		alert("上架數量不可高於商品庫存")
 		return
 	}
+	console.log(JSON.stringify(newProductData))
 	$.ajax({
-		url: `/addProduct/${productIdPOST}`,
+		url: `api/addProduct_api`,
 		method: 'POST',
 		contentType: 'application/json',
 		data: JSON.stringify(newProductData),

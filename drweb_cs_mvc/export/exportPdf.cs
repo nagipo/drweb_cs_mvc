@@ -5,6 +5,7 @@ using iTextSharp.text.pdf;
 using Newtonsoft.Json;
 using OfficeOpenXml;
 using OfficeOpenXml.Drawing;
+using OfficeOpenXml.Style;
 using QuickChart;
 using System.Collections;
 using System.Reflection.Metadata;
@@ -47,9 +48,10 @@ namespace drweb_cs_mvc.export
 			qc.Height = 300;
 			qc.Version = "2.9.4";
 			qc.Config =json;
-			byte[] imageBytes = qc.ToByteArray();
+			byte[] imageBytes = [];
+			qc.ToByteArray();
 			string imagePath = @"C:\Users\User\Pictures\your_image.jpg";
-			//System.IO.File.WriteAllBytes(imagePath, imageBytes);
+			
 
 			FileStream fileStream = new FileStream(imagePath, FileMode.Open);
 			fileStream.Close();
@@ -70,28 +72,49 @@ namespace drweb_cs_mvc.export
 
 			document.Close();
 
+			string templatePath = @"C:\Users\User\Pictures\template.xlsx";
 			// 将内存流转换为 byte[] 数组
 			byte[] pdfBytes = memoryStream.ToArray();
 			ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-			using (ExcelPackage excelPackage = new ExcelPackage())
+			using (ExcelPackage excelPackage = new ExcelPackage(new System.IO.FileInfo(templatePath)))
 			{
+
 				// 添加一个工作表
-				ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+				ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets["Sheet1"];
 
 				// 写入标题行
 				worksheet.Cells[1, 1].Value = "商品名稱";
-				worksheet.Cells[1, 2].Value = "累積售出";
+				worksheet.Cells[1, 2].Value = "售出數量";
+				worksheet.Cells[1, 3].Value = "單價";
+				worksheet.Cells[1, 4].Value = "小計";
 
-			
+				worksheet.Cells[1, 1,1,4].Style.Border.Bottom.Style= ExcelBorderStyle.DashDot;
+
+
 				int row = 2;
+				int total = 0;
 				foreach (var kvp in bestsell)
 				{
+					if (row>2)
+					{
+						var sourceRange = worksheet.Cells[2, 1, 2, 4];
+						var destinationRange = worksheet.Cells[row,1,row,4];
+						sourceRange.Copy(destinationRange);
+					}
 					worksheet.Cells[row, 1].Value = kvp[0];
 					worksheet.Cells[row, 2].Value = kvp[1];
+					worksheet.Cells[row, 3].Value = kvp[2];
+					worksheet.Cells[row, 4].Value = int.Parse(kvp[1]) * int.Parse(kvp[2]);
+					total+= int.Parse(kvp[1]) * int.Parse(kvp[2]);
 					row++;
 				}
-				ExcelPicture picture = worksheet.Drawings.AddPicture("Image", new MemoryStream(imageBytes));
-				picture.SetPosition(5, 5, 2, 0);
+				worksheet.Cells[row, 4].Value=total;
+				worksheet.Cells[row, 1].Value = "總計";
+				worksheet.Cells[row, 1,row,4].Style.Border.Top.Style= ExcelBorderStyle.DashDot;
+				
+
+				//ExcelPicture picture = worksheet.Drawings.AddPicture("Image", new MemoryStream(imageBytes));
+				//picture.SetPosition(5, 5, 2, 0);
 
 
 				string filePath = @"C:\Users\User\Pictures\your_sheet.xlsx";

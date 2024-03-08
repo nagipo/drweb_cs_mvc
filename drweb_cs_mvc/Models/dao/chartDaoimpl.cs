@@ -158,7 +158,7 @@ namespace drweb_cs_mvc.Models.dao
 			{
 				List<List<string>> result = new List<List<string>>();
 
-				string sql = "SELECT p.name AS productName, COALESCE(SUM(od.quantity), 0) AS totalQuantitySold FROM Products p LEFT JOIN Orderdetails od ON p.id = od.productsid WHERE p.shop_id = @value1 GROUP BY p.id, p.name ORDER BY totalQuantitySold DESC;";
+				string sql = "SELECT p.name AS productName, COALESCE(SUM(od.quantity), 0) AS totalQuantitySold,p.price FROM Products p LEFT JOIN Orderdetails od ON p.id = od.productsid WHERE p.shop_id = @value1 GROUP BY p.id, p.name ORDER BY totalQuantitySold DESC;";
 				try
 				{
 
@@ -172,10 +172,12 @@ namespace drweb_cs_mvc.Models.dao
 					{
 						string productName = reader["productName"].ToString();
 						string totalQuantitySold = reader["totalQuantitySold"].ToString();
+						string price = reader["price"].ToString();
 						Console.WriteLine(productName);
 						List<string> row = new List<string>();
 						row.Add(productName);
 						row.Add(totalQuantitySold);
+						row.Add(price);
 						result.Add(row);
 					}
 				}

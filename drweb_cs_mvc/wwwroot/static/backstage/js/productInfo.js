@@ -63,7 +63,7 @@ function ProductInfoqueryAll(choosepage) {
 		            <td>${pstock}</td>
 		            <td>
 		            <div class="switch">
-		                <input class="switch-checkbox" id="switchID${i}" type="checkbox" name="switch-checkbox" ${discontinued ? 'checked=true' : ''}">
+		                <input class="switch-checkbox" id="switchID${i}" type="checkbox" name="switch-checkbox" ${discontinued==1 ? 'checked=true' : ''}">
 		                <label class="switch-label" for="switchID${i}">
 		                    <span class="switch-txt" turnOn="已上架" turnOff="未上架"></span>
 		                    <span class="switch-Round-btn"></span>
@@ -81,8 +81,9 @@ function ProductInfoqueryAll(choosepage) {
 			//修改商品GET
 			$("#bodyContext").off("click", ".editBtn");
 			$("#bodyContext").on("click", ".editBtn", function() {
-				editPage();
+				
 				let productId = $(this).data("id");
+				editPage(productId);
 				$('#editProductID').prop('readonly', true);
 				$("#upload").off("click");
 				$("#upload").on("click", function() {
@@ -146,8 +147,11 @@ function ProductInfoqueryAll(choosepage) {
 
 				})
 
-				function editPage() {
-					$("#formSpace").load("/backstage/html/" + "productSetting" + ".html #formSpace>*")
+				function editPage(productId) {
+					$("#formSpace").load("static/backstage/html/" + "productSetting" + ".html #formSpace>*", () => {
+						document.getElementById("editProductID").value = productId
+
+					})
 				}
 			});
 
@@ -169,7 +173,7 @@ function ProductInfoqueryAll(choosepage) {
 
 				// 發送 AJAX POST 請求更新商品的 discontinued 狀態
 				$.ajax({
-					url: `/updateDiscontinued/${productId}`,
+					url: `api/updateDiscontinued/${productId}`,
 					method: 'POST',
 					contentType: 'application/json',
 					data: JSON.stringify({ discontinued: isChecked ? 1 : 0 }),
@@ -311,7 +315,7 @@ function ProductInfoqueryAll(choosepage) {
 				return
 			}
 			$.ajax({
-				url: `/updateProducts/${productIdPOST}`,
+				url: `api/updateProduct_api`,
 				method: 'POST',
 				contentType: 'application/json',
 				data: JSON.stringify(updatedData),
